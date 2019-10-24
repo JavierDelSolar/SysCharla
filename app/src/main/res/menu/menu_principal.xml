@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_Charlas"
+        android:icon="@drawable/ic_charlas_black_24dp"
+        android:title="Charlas" />
+
+    <item
+        android:id="@+id/navigation_MisCharlas"
+        android:icon="@drawable/ic_mischarlas_black_24dp"
+        android:title="Mis Charlas" />
+
+    <item
+        android:id="@+id/navigation_MiPerfil"
+        android:icon="@drawable/ic_perfil_black_24dp"
+        android:title="Mi Perfil" />
+</menu>
