@@ -1,4 +1,4 @@
-package com.cibertec.syscharla.fragments;
+package com.cibertec.syscharla.Fragments;
 
 
 import android.os.Bundle;
@@ -15,10 +15,10 @@ import com.cibertec.syscharla.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MisCharlasFragment extends Fragment {
+public class CharlasFragment extends Fragment {
 
 
-    public MisCharlasFragment() {
+    public CharlasFragment() {
         // Required empty public constructor
     }
 
@@ -27,7 +27,7 @@ public class MisCharlasFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_mis_charlas, container, false);
+        return inflater.inflate(R.layout.fragment_charlas, container, false);
     }
 
 }
