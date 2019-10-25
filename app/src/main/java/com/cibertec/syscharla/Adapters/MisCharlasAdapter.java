@@ -14,32 +14,33 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.cibertec.syscharla.Clases.Charla;
 import com.cibertec.syscharla.R;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class MisCharlasAdapter extends RecyclerView.Adapter<MisCharlasAdapter.MisCharlasVH> {
 
-    private List<Charla> charlas;
+    private ArrayList<Charla> charlas;
     private int layout;
     private AdapterView.OnItemClickListener itemClickListener;
 
-    public MisCharlasAdapter(List<Charla> charlas, int layout, AdapterView.OnItemClickListener itemClickListener) {
+    public MisCharlasAdapter(ArrayList<Charla> charlas, int layout, AdapterView.OnItemClickListener itemClickListener) {
         this.charlas = charlas;
         this.layout = layout;
         this.itemClickListener = itemClickListener;
     }
 
     public static class MisCharlasVH extends RecyclerView.ViewHolder{
-        public ImageView ivCharla;
+        //public ImageView ivCharla;
         public TextView tvTitulo;
 
         public MisCharlasVH(@NonNull View v) {
             super(v);
-            ivCharla = v.findViewById(R.id.ivCharla);
+            //ivCharla = v.findViewById(R.id.ivCharla);
             tvTitulo = v.findViewById(R.id.tvTitulo);
         }
 
-        public void bind(final Charla charlas, final AdapterView.OnItemClickListener listener){
-            this.tvTitulo.setText(Html.fromHtml("<b>" +  charlas.getNombre() + "</b>"));
+        public void bind(final Charla charla, final AdapterView.OnItemClickListener listener){
+            //this.tvTitulo.setText(Html.fromHtml("<b>" +  charlas.getNombre() + "</b>"));
+            this.tvTitulo.setText(charla.getNombre());
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -55,11 +56,11 @@ public class MisCharlasAdapter extends RecyclerView.Adapter<MisCharlasAdapter.Mi
     public MisCharlasAdapter.MisCharlasVH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(layout, parent, false);
         MisCharlasVH vh = new MisCharlasVH(v);
-        return null;
+        return vh;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MisCharlasAdapter.MisCharlasVH holder, int pos) {
+    public void onBindViewHolder(MisCharlasVH holder, int pos) {
             holder.bind(charlas.get(pos), itemClickListener);
     }
 
