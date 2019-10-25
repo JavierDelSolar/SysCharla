@@ -3,7 +3,7 @@ package com.cibertec.syscharla.Clases;
 import java.util.Date;
 
 public class Charla {
-    //private int id;
+    private int id;
     private String nombre;
     //private Date fecha;
     //private String direccion;
@@ -13,20 +13,19 @@ public class Charla {
     public Charla() {
     }
 
-    public Charla(String nombre, String descripcion) {
+    public Charla(int id, String nombre, String descripcion) {
         this.nombre = nombre;
         this.descripcion = descripcion;
     }
 
-    /*
-        public int getId() {
-            return id;
-        }
+    public int getId() {
+        return id;
+    }
 
-        public void setId(int id) {
-            this.id = id;
-        }
-    */
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getNombre() {
         return nombre;
     }

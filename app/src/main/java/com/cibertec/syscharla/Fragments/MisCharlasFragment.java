@@ -34,19 +34,19 @@ public class MisCharlasFragment extends Fragment {
 
         charlas = new ArrayList<>();
 
-        charlas.add(new Charla("Prueba1", "Lorem ipsum dolor sit amet, consectetur adipisicing elit."));
-        charlas.add(new Charla("Prueba2", "Lorem ipsum dolor sit amet, consectetur adipisicing elit."));
-        charlas.add(new Charla("Prueba3", "Lorem ipsum dolor sit amet, consectetur adipisicing elit."));
-        charlas.add(new Charla("Prueba4", "Lorem ipsum dolor sit amet, consectetur adipisicing elit."));
-        charlas.add(new Charla("Prueba5", "Lorem ipsum dolor sit amet, consectetur adipisicing elit."));
-        charlas.add(new Charla("Prueba6", "Lorem ipsum dolor sit amet, consectetur adipisicing elit."));
-        charlas.add(new Charla("Prueba7", "Lorem ipsum dolor sit amet, consectetur adipisicing elit."));
-        charlas.add(new Charla("Prueba8", "Lorem ipsum dolor sit amet, consectetur adipisicing elit."));
-        charlas.add(new Charla("Prueba9", "Lorem ipsum dolor sit amet, consectetur adipisicing elit."));
-        charlas.add(new Charla("Prueba10", "Lorem ipsum dolor sit amet, consectetur adipisicing elit."));
-        charlas.add(new Charla("Prueba11", "Lorem ipsum dolor sit amet, consectetur adipisicing elit."));
-        charlas.add(new Charla("Prueba12", "Lorem ipsum dolor sit amet, consectetur adipisicing elit."));
-        charlas.add(new Charla("Prueba13", "Lorem ipsum dolor sit amet, consectetur adipisicing elit."));
+        charlas.add(new Charla(1, "Prueba1", "Lorem ipsum dolor sit amet, consectetur adipisicing elit."));
+        charlas.add(new Charla(2, "Prueba2", "Lorem ipsum dolor sit amet, consectetur adipisicing elit."));
+        charlas.add(new Charla(3, "Prueba3", "Lorem ipsum dolor sit amet, consectetur adipisicing elit."));
+        charlas.add(new Charla(4, "Prueba4", "Lorem ipsum dolor sit amet, consectetur adipisicing elit."));
+        charlas.add(new Charla(5, "Prueba5", "Lorem ipsum dolor sit amet, consectetur adipisicing elit."));
+        charlas.add(new Charla(6, "Prueba6", "Lorem ipsum dolor sit amet, consectetur adipisicing elit."));
+        charlas.add(new Charla(7, "Prueba7", "Lorem ipsum dolor sit amet, consectetur adipisicing elit."));
+        charlas.add(new Charla(8, "Prueba8", "Lorem ipsum dolor sit amet, consectetur adipisicing elit."));
+        charlas.add(new Charla(9, "Prueba9", "Lorem ipsum dolor sit amet, consectetur adipisicing elit."));
+        charlas.add(new Charla(10, "Prueba10", "Lorem ipsum dolor sit amet, consectetur adipisicing elit."));
+        charlas.add(new Charla(11, "Prueba11", "Lorem ipsum dolor sit amet, consectetur adipisicing elit."));
+        charlas.add(new Charla(12, "Prueba12", "Lorem ipsum dolor sit amet, consectetur adipisicing elit."));
+        charlas.add(new Charla(13, "Prueba13", "Lorem ipsum dolor sit amet, consectetur adipisicing elit."));
 
         rvMisCharlas = view.findViewById(R.id.rvMisCharlas);
         mcLayoutManager= new LinearLayoutManager(getActivity());

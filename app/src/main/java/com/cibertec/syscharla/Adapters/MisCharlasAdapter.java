@@ -1,5 +1,6 @@
 package com.cibertec.syscharla.Adapters;
 
+import android.content.Intent;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.cibertec.syscharla.CharlaActivity;
 import com.cibertec.syscharla.Clases.Charla;
 import com.cibertec.syscharla.R;
 
@@ -50,12 +52,15 @@ public class MisCharlasAdapter extends RecyclerView.Adapter<MisCharlasAdapter.Mi
     }
 
     @Override
-    public void onBindViewHolder(MisCharlasVH holder, int pos) {
+    public void onBindViewHolder(MisCharlasVH holder, final int pos) {
         holder.tvTitulo.setText(charlas.get(pos).getNombre());
         holder.tvDescripcion.setText(charlas.get(pos).getDescripcion());
         holder.cvCharla.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
+                Charla charla = charlas.get(pos);
+                Intent intent = new Intent(view.getContext(), CharlaActivity.class);
+                view.getContext().startActivity(intent);
 
             }
         });
