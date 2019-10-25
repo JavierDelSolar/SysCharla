@@ -7,14 +7,15 @@ public class Charla {
     private String nombre;
     //private Date fecha;
     //private String direccion;
-    //private String descripcion;
+    private String descripcion;
     //private boolean status;
 
     public Charla() {
     }
 
-    public Charla(String nombre) {
+    public Charla(String nombre, String descripcion) {
         this.nombre = nombre;
+        this.descripcion = descripcion;
     }
 
     /*
@@ -33,6 +34,14 @@ public class Charla {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
 /*
     public Date getFecha() {
         return fecha;
@@ -50,13 +59,7 @@ public class Charla {
         this.direccion = direccion;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
 
     public boolean isStatus() {
         return status;

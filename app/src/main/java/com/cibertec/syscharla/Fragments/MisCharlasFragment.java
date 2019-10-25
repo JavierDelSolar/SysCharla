@@ -32,19 +32,25 @@ public class MisCharlasFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_mis_charlas, container, false);
 
-        charlas = new ArrayList<Charla>();
+        charlas = new ArrayList<>();
 
-        charlas.add(new Charla("Prueba1"));
-        charlas.add(new Charla("Prueba2"));
+        charlas.add(new Charla("Prueba1", "Lorem ipsum dolor sit amet, consectetur adipisicing elit."));
+        charlas.add(new Charla("Prueba2", "Lorem ipsum dolor sit amet, consectetur adipisicing elit."));
+        charlas.add(new Charla("Prueba3", "Lorem ipsum dolor sit amet, consectetur adipisicing elit."));
+        charlas.add(new Charla("Prueba4", "Lorem ipsum dolor sit amet, consectetur adipisicing elit."));
+        charlas.add(new Charla("Prueba5", "Lorem ipsum dolor sit amet, consectetur adipisicing elit."));
+        charlas.add(new Charla("Prueba6", "Lorem ipsum dolor sit amet, consectetur adipisicing elit."));
+        charlas.add(new Charla("Prueba7", "Lorem ipsum dolor sit amet, consectetur adipisicing elit."));
+        charlas.add(new Charla("Prueba8", "Lorem ipsum dolor sit amet, consectetur adipisicing elit."));
+        charlas.add(new Charla("Prueba9", "Lorem ipsum dolor sit amet, consectetur adipisicing elit."));
+        charlas.add(new Charla("Prueba10", "Lorem ipsum dolor sit amet, consectetur adipisicing elit."));
+        charlas.add(new Charla("Prueba11", "Lorem ipsum dolor sit amet, consectetur adipisicing elit."));
+        charlas.add(new Charla("Prueba12", "Lorem ipsum dolor sit amet, consectetur adipisicing elit."));
+        charlas.add(new Charla("Prueba13", "Lorem ipsum dolor sit amet, consectetur adipisicing elit."));
 
         rvMisCharlas = view.findViewById(R.id.rvMisCharlas);
         mcLayoutManager= new LinearLayoutManager(getActivity());
-        mcAdapter = new MisCharlasAdapter(charlas, R.layout.fragment_mis_charlas, new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-            }
-        });
+        mcAdapter = new MisCharlasAdapter(charlas);
         rvMisCharlas.setHasFixedSize(true);
         rvMisCharlas.setLayoutManager(mcLayoutManager);
         rvMisCharlas.setAdapter(mcAdapter);
