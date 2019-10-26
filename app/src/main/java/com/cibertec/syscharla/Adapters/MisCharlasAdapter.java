@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -15,13 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.cibertec.syscharla.CharlaActivity;
 import com.cibertec.syscharla.Clases.Charla;
-import com.cibertec.syscharla.Fragments.MisCharlasFragment;
-import com.cibertec.syscharla.MenuActivity;
 import com.cibertec.syscharla.R;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class MisCharlasAdapter extends RecyclerView.Adapter<MisCharlasAdapter.MisCharlasVH> {
 
@@ -35,7 +31,7 @@ public class MisCharlasAdapter extends RecyclerView.Adapter<MisCharlasAdapter.Mi
 
     public class MisCharlasVH extends RecyclerView.ViewHolder{
 
-        public TextView tvTitulo, tvDescripcion, tvFecha;
+        public TextView tvTitulo, tvExpositor, tvFecha;
         public CardView cvCharla;
         public ImageView ivCharla;
 
@@ -44,7 +40,7 @@ public class MisCharlasAdapter extends RecyclerView.Adapter<MisCharlasAdapter.Mi
             cvCharla = v.findViewById(R.id.cvCharla);
             tvTitulo = v.findViewById(R.id.tvTitulo);
             tvFecha = v.findViewById(R.id.tvFecha);
-            tvDescripcion = v.findViewById(R.id.tvDescripcion);
+            tvExpositor = v.findViewById(R.id.tvExpositor);
             ivCharla = v.findViewById(R.id.ivCharla);
         }
 
@@ -62,7 +58,7 @@ public class MisCharlasAdapter extends RecyclerView.Adapter<MisCharlasAdapter.Mi
     @Override
     public void onBindViewHolder(MisCharlasVH holder, final int pos){
         holder.tvTitulo.setText(charlas.get(pos).getNombre());
-        holder.tvDescripcion.setText(charlas.get(pos).getDescripcion());
+        holder.tvExpositor.setText(charlas.get(pos).getExpositor());
         holder.tvFecha.setText(dateFormat.format(charlas.get(pos).getFechahora()));
         holder.ivCharla.setImageResource(charlas.get(pos).getIdFoto());
 
