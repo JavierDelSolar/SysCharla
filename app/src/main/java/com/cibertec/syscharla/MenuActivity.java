@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import com.cibertec.syscharla.Fragments.CharlasFragment;
@@ -27,7 +28,12 @@ public class MenuActivity extends AppCompatActivity {
         Fragment selectedfragment =  new CharlasFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedfragment).commit();
     }
-
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_toolbar, menu);
+        return true;
+    }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
