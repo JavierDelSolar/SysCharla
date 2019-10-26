@@ -1,8 +1,9 @@
 package com.cibertec.syscharla.Clases;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Charla {
+public class Charla implements Serializable {
     private int id;
     private String nombre;
     //private Date fecha;

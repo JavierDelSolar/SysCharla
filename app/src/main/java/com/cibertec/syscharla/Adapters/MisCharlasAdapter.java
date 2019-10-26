@@ -1,13 +1,12 @@
 package com.cibertec.syscharla.Adapters;
 
 import android.content.Intent;
-import android.text.Html;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -15,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.cibertec.syscharla.CharlaActivity;
 import com.cibertec.syscharla.Clases.Charla;
+import com.cibertec.syscharla.Fragments.MisCharlasFragment;
+import com.cibertec.syscharla.MenuActivity;
 import com.cibertec.syscharla.R;
 
 import java.util.ArrayList;
@@ -60,6 +61,10 @@ public class MisCharlasAdapter extends RecyclerView.Adapter<MisCharlasAdapter.Mi
             public void onClick(View view) {
                 Charla charla = charlas.get(pos);
                 Intent intent = new Intent(view.getContext(), CharlaActivity.class);
+                Bundle bundle= new Bundle();
+                bundle.putSerializable("charla", charla);
+                intent.putExtras(bundle);
+
                 view.getContext().startActivity(intent);
 
             }
