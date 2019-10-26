@@ -16,7 +16,7 @@
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivRegistro1">
+        app:layout_constraintTop_toBottomOf="@+id/ivImagenRE">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tie_EmailRE"
@@ -26,13 +26,13 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_PasswordRE"
+        android:id="@+id/til_PasswordRE1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/til_RepPassword"
+        app:layout_constraintBottom_toTopOf="@+id/til_PasswordRE2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,13 +40,14 @@
         app:layout_constraintVertical_bias="0.243">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tie_PasswordRE1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Ingresar Contraseña" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_RepPassword"
+        android:id="@+id/til_PasswordRE2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -54,16 +55,17 @@
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/til_PasswordRE">
+        app:layout_constraintTop_toBottomOf="@+id/til_PasswordRE1">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tie_PasswordRE2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Repetir Contraseña" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/btn_ContinuarRE"
+        android:id="@+id/btn_Continuar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -76,10 +78,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/til_RepPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/til_PasswordRE2" />
 
     <ImageView
-        android:id="@+id/ivRegistro1"
+        android:id="@+id/ivImagenRE"
         android:layout_width="409dp"
         android:layout_height="135dp"
         app:layout_constraintEnd_toEndOf="parent"

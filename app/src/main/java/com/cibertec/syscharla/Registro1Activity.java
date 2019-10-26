@@ -16,7 +16,7 @@ public class Registro1Activity extends AppCompatActivity  implements View.OnClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro1);
 
-        btnContinuar = (Button)findViewById(R.id.btn_ContinuarRE);
+        btnContinuar = (Button)findViewById(R.id.btn_Continuar);
         btnContinuar.setOnClickListener(this);
 
     }

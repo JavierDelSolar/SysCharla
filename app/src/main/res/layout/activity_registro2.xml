@@ -11,9 +11,7 @@
         android:id="@+id/ivFoto"
         android:layout_width="207dp"
         android:layout_height="160dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="6dp"
         android:src="@mipmap/perfil"
         app:civ_border_color="#FAF7F7"
         app:civ_border_width="2dp"
@@ -21,20 +19,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
+    <ImageButton
+        android:id="@+id/ibCamaraRE"
+        android:layout_width="45dp"
+        android:layout_height="0dp"
+        android:background="@android:color/background_light"
+        app:layout_constraintBottom_toBottomOf="@+id/ivFoto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.568"
+        app:layout_constraintStart_toStartOf="@+id/ivFoto"
+        app:srcCompat="@mipmap/ic_camara" />
+
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_NombreRE"
+        android:id="@+id/til_NombresRE"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="6dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/til_ApellidosRE"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_Registrar">
+        app:layout_constraintTop_toBottomOf="@+id/ivFoto">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tie_NombresRE"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nombres Completos" />
@@ -44,83 +53,72 @@
         android:id="@+id/til_ApellidosRE"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/til_CelularRE"
+        android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/til_NombreRE">
+        app:layout_constraintTop_toBottomOf="@+id/til_NombresRE">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tie_ApellidosRE"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Apellidos Completos" />
     </com.google.android.material.textfield.TextInputLayout>
 
+
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_CelularRE"
+        android:id="@+id/til_NroCelularRE"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/til_ApellidosRE">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tie_NroCelularRE"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nro. Celular" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="6dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/til_CelularRE">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Dirección" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <ImageButton
-        android:id="@+id/btn_Registrar"
-        android:layout_width="43dp"
-        android:layout_height="53dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="113dp"
-        android:layout_marginBottom="26dp"
-        android:background="@android:color/background_light"
-        app:layout_constraintBottom_toTopOf="@+id/til_NombreRE"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.562"
-        app:layout_constraintStart_toStartOf="@+id/ivFoto"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/ic_camara" />
-
-    <Button
-        android:id="@+id/button2"
+        android:id="@+id/til_DireccionRE"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="88dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/til_NroCelularRE">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tie_DireccionRE"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingrese Dirección" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btn_ConfigurarMP"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
         android:background="@color/colorPrimary"
         android:text="REGISTRAR"
         android:textColor="@android:color/background_light"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/til_DireccionRE" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
