@@ -16,6 +16,10 @@ import com.cibertec.syscharla.Clases.Charla;
 import com.cibertec.syscharla.R;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Random;
 
 public class MisCharlasFragment extends Fragment {
 
@@ -34,19 +38,23 @@ public class MisCharlasFragment extends Fragment {
 
         charlas = new ArrayList<>();
 
-        charlas.add(new Charla(1, "Prueba1", "Lorem ipsum dolor sit amet, consectetur adipisicing elit."));
-        charlas.add(new Charla(2, "Prueba2", "Lorem ipsum dolor sit amet, consectetur adipisicing elit."));
-        charlas.add(new Charla(3, "Prueba3", "Lorem ipsum dolor sit amet, consectetur adipisicing elit."));
-        charlas.add(new Charla(4, "Prueba4", "Lorem ipsum dolor sit amet, consectetur adipisicing elit."));
-        charlas.add(new Charla(5, "Prueba5", "Lorem ipsum dolor sit amet, consectetur adipisicing elit."));
-        charlas.add(new Charla(6, "Prueba6", "Lorem ipsum dolor sit amet, consectetur adipisicing elit."));
-        charlas.add(new Charla(7, "Prueba7", "Lorem ipsum dolor sit amet, consectetur adipisicing elit."));
-        charlas.add(new Charla(8, "Prueba8", "Lorem ipsum dolor sit amet, consectetur adipisicing elit."));
-        charlas.add(new Charla(9, "Prueba9", "Lorem ipsum dolor sit amet, consectetur adipisicing elit."));
-        charlas.add(new Charla(10, "Prueba10", "Lorem ipsum dolor sit amet, consectetur adipisicing elit."));
-        charlas.add(new Charla(11, "Prueba11", "Lorem ipsum dolor sit amet, consectetur adipisicing elit."));
-        charlas.add(new Charla(12, "Prueba12", "Lorem ipsum dolor sit amet, consectetur adipisicing elit."));
-        charlas.add(new Charla(13, "Prueba13", "Lorem ipsum dolor sit amet, consectetur adipisicing elit."));
+        String descripcion = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi non quis exercitationem culpa nesciunt nihil aut nostrum explicabo reprehenderit optio amet ab temporibus asperiores quasi cupiditate. Voluptatum ducimus voluptates voluptas?." +
+                "\n Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi non quis exercitationem culpa nesciunt nihil aut nostrum explicabo reprehenderit optio amet ab temporibus asperiores quasi cupiditate. Voluptatum ducimus voluptates voluptas?." +
+                "\n Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi non quis exercitationem culpa nesciunt nihil aut nostrum explicabo reprehenderit optio amet ab temporibus asperiores quasi cupiditate. Voluptatum ducimus voluptates voluptas?";
+
+        Random r = new Random();
+        String[] titulo = {"Ciberseguridad", "Ethical Hacking", "Java"};
+        String[] expositor = {"Expositor 1", "Expositor 2", "Expositor 3"};
+        String[] direccion = {"Direccion 1", "Direccion 2", "Direccion 3"};
+        int[] imagen = {R.drawable.ciberseguridad, R.drawable.ethical_hacking, R.drawable.java};
+
+        //Date fecha = new Date();
+        Date fecha = new Date(119, 10, 15, 10, 30);
+
+        for(int i=1; i <= 20 ; i++){
+            int num = r.nextInt(3-0);
+            charlas.add(new Charla(i, titulo[num] + ": " +i, descripcion, expositor[num], direccion[num], imagen[num], fecha));
+        }
 
         rvMisCharlas = view.findViewById(R.id.rvMisCharlas);
         mcLayoutManager= new LinearLayoutManager(getActivity());
