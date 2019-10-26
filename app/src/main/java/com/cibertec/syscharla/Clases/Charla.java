@@ -1,15 +1,11 @@
 package com.cibertec.syscharla.Clases;
 
+import android.graphics.drawable.Drawable;
+
 import java.io.Serializable;
 import java.util.Date;
 
 public class Charla implements Serializable {
-//    private int id;
-//    private String nombre;
-//    //private Date fecha;
-//    //private String direccion;
-//    private String descripcion;
-//    //private boolean status;
 
     private int id;
     private String nombre;
@@ -24,9 +20,14 @@ public class Charla implements Serializable {
     public Charla() {
     }
 
-    public Charla(int id, String nombre, String descripcion) {
+    public Charla(int id, String nombre, String descripcion, String expositor, String direccion, int idFoto, Date fechahora) {
+        this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
+        this.expositor = expositor;
+        this.direccion = direccion;
+        this.idFoto = idFoto;
+        this.fechahora = fechahora;
     }
     public Charla(String nombre, String descripcion,String expositor,Date fechahora, int idFoto) {
         this.nombre = nombre;
