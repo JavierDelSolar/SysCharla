@@ -31,7 +31,7 @@ public class PrivacidadActivity extends AppCompatActivity {
                     // Toast.makeText(getApplicationContext(),"Click: " +String.valueOf(finalI),Toast.LENGTH_SHORT ).show();
 
                     if (finalI == 0) {
-                        Intent intent = new Intent(getApplicationContext(), CambioPasswordActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), CambioPassActivity.class);
                         startActivity(intent);
                     } else if (finalI == 1) {
                         Intent intent = new Intent(getApplicationContext(), CambioEmailActivity.class);
