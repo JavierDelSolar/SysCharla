@@ -10,7 +10,7 @@ import com.cibertec.syscharla.Clases.Charla;
 
 public class CharlaActivity extends AppCompatActivity {
 
-    TextView tvTitulo;
+    TextView tvTitulo, tvDescripcion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,12 +18,15 @@ public class CharlaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_charla);
 
         tvTitulo = findViewById(R.id.tvTitulo);
+        tvDescripcion = findViewById(R.id.tvDescripcion);
 
         Bundle bundle = getIntent().getExtras();
         Charla charla = null;
         if(bundle != null){
             charla = (Charla)bundle.getSerializable("charla");
             tvTitulo.setText(charla.getNombre());
+            tvDescripcion.setText(charla.getDescripcion());
+
         }
 
     }
