@@ -5,12 +5,17 @@ import java.util.Date;
 public class Charla {
     private int id;
     private String nombre;
-    private Date fecha;
-    private String direccion;
+    //private Date fecha;
+    //private String direccion;
     private String descripcion;
-    private boolean status;
+    //private boolean status;
 
     public Charla() {
+    }
+
+    public Charla(int id, String nombre, String descripcion) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
     }
 
     public int getId() {
@@ -29,6 +34,14 @@ public class Charla {
         this.nombre = nombre;
     }
 
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+/*
     public Date getFecha() {
         return fecha;
     }
@@ -45,13 +58,7 @@ public class Charla {
         this.direccion = direccion;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
 
     public boolean isStatus() {
         return status;
@@ -60,4 +67,6 @@ public class Charla {
     public void setStatus(boolean status) {
         this.status = status;
     }
+
+ */
 }

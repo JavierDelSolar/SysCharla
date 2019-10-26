@@ -1,5 +1,6 @@
 package com.cibertec.syscharla.Adapters;
 
+import android.content.Intent;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,58 +10,60 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.cibertec.syscharla.CharlaActivity;
 import com.cibertec.syscharla.Clases.Charla;
 import com.cibertec.syscharla.R;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class MisCharlasAdapter extends RecyclerView.Adapter<MisCharlasAdapter.MisCharlasVH> {
 
-    private List<Charla> charlas;
-    private int layout;
-    private AdapterView.OnItemClickListener itemClickListener;
+    private ArrayList<Charla> charlas;
 
-    public MisCharlasAdapter(List<Charla> charlas, int layout, AdapterView.OnItemClickListener itemClickListener) {
+    public MisCharlasAdapter(ArrayList<Charla> charlas) {
         this.charlas = charlas;
-        this.layout = layout;
-        this.itemClickListener = itemClickListener;
     }
 
-    public static class MisCharlasVH extends RecyclerView.ViewHolder{
-        public ImageView ivCharla;
-        public TextView tvTitulo;
+    public class MisCharlasVH extends RecyclerView.ViewHolder{
+        //public ImageView ivCharla;
+        public TextView tvTitulo, tvDescripcion;
+        public CardView cvCharla;
 
         public MisCharlasVH(@NonNull View v) {
             super(v);
-            ivCharla = v.findViewById(R.id.ivCharla);
+            //ivCharla = v.findViewById(R.id.ivCharla);
+            cvCharla = v.findViewById(R.id.cvCharla);
             tvTitulo = v.findViewById(R.id.tvTitulo);
+            tvDescripcion = v.findViewById(R.id.tvDescripcion);
         }
 
-        public void bind(final Charla charlas, final AdapterView.OnItemClickListener listener){
-            this.tvTitulo.setText(Html.fromHtml("<b>" +  charlas.getNombre() + "</b>"));
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                }
-            });
-
-        }
     }
 
     @NonNull
     @Override
-    public MisCharlasAdapter.MisCharlasVH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(layout, parent, false);
+    public MisCharlasAdapter.MisCharlasVH onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        View v;
+        v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_mis_charlas, viewGroup, false);
         MisCharlasVH vh = new MisCharlasVH(v);
-        return null;
+        return vh;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MisCharlasAdapter.MisCharlasVH holder, int pos) {
-            holder.bind(charlas.get(pos), itemClickListener);
+    public void onBindViewHolder(MisCharlasVH holder, final int pos) {
+        holder.tvTitulo.setText(charlas.get(pos).getNombre());
+        holder.tvDescripcion.setText(charlas.get(pos).getDescripcion());
+        holder.cvCharla.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Charla charla = charlas.get(pos);
+                Intent intent = new Intent(view.getContext(), CharlaActivity.class);
+                view.getContext().startActivity(intent);
+
+            }
+        });
     }
 
     @Override
