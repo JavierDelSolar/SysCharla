@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class LogueoActivity extends AppCompatActivity implements View.OnClickListener{
     Button btnIngresar;
@@ -25,11 +26,12 @@ public class LogueoActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
 
-        if(v == btnIngresar) {
+        if(v.getId() == btnIngresar.getId()) {
             Intent intent = new Intent(this, MenuActivity.class);
             startActivity(intent);
-        }else if(v == tvRegistrate){
-            Intent intent = new Intent(this, Registro1Activity.class);
+        }else if(v.getId() == tvRegistrate.getId()){
+           // Toast.makeText(this,"entro", Toast.LENGTH_LONG).show();
+           Intent intent = new Intent(this, Registro1Activity.class);
             startActivity(intent);
         }
     }

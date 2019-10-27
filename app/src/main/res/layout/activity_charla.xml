@@ -21,7 +21,8 @@
             android:text="TextView"
             android:textAlignment="center"
             android:textAllCaps="true"
-            android:textSize="30sp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -30,10 +31,8 @@
         <ImageView
             android:id="@+id/ivCharla"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_height="278dp"
             android:layout_marginTop="12dp"
-            android:layout_marginEnd="8dp"
             android:adjustViewBounds="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -46,10 +45,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="24dp"
             android:layout_marginEnd="8dp"
             android:text="TextView"
-            android:textSize="24sp"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ivCharla" />
@@ -74,6 +72,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Expositor:"
+                    android:textColor="@android:color/black"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -95,6 +94,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Fecha:"
+                    android:textColor="@android:color/black"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -117,6 +117,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Dirección:"
+                    android:textColor="@android:color/black"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -147,14 +148,10 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
 
-                android:text="Ver Productos" />
+                android:background="@color/colorPrimary"
+                android:text="Ver Productos"
+                android:textColor="@android:color/background_light" />
 
-            <Button
-                android:id="@+id/btnAsistencia"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Asistir" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

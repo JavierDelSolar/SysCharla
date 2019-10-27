@@ -15,11 +15,11 @@ import java.text.SimpleDateFormat;
 
 import static android.view.View.GONE;
 
-public class CharlaActivity extends AppCompatActivity {
+public class CharlaActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView tvTitulo, tvDescripcion, tvExpositor, tvFecha, tvDireccion;
     private ImageView ivCharla;
-    private Button btnProductos, btnAsistencia;
+    private Button btnProductos;
     public static final String DATE_FORMAT = "yyyy-MM-dd HH:mm";
     public SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
 
@@ -35,7 +35,8 @@ public class CharlaActivity extends AppCompatActivity {
         tvDireccion = findViewById(R.id.tvDireccion);
         ivCharla = findViewById(R.id.ivCharla);
         btnProductos = findViewById(R.id.btnProductos);
-        btnAsistencia = findViewById(R.id.btnAsistencia);
+        btnProductos.setOnClickListener(this);
+
 
         String opcion = getIntent().getStringExtra("Opcion");
         Bundle bundle = getIntent().getExtras();
@@ -43,7 +44,7 @@ public class CharlaActivity extends AppCompatActivity {
         if(opcion != null){
             switch (opcion){
                 case "Mis Charlas":
-                    btnAsistencia.setVisibility(GONE);
+                    //btnAsistencia.setVisibility(GONE);
                     if(bundle != null){
                         charla = (Charla)bundle.getSerializable("charla");
                         final int id = charla.getId();
@@ -53,20 +54,22 @@ public class CharlaActivity extends AppCompatActivity {
                         ivCharla.setImageResource(charla.getIdFoto());
                         tvFecha.setText((dateFormat.format(charla.getFechahora())));
                         tvDireccion.setText(charla.getDireccion());
-
-                        btnProductos.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Intent intent = new Intent(view.getContext(), ProductoActivity.class);
-                                intent.putExtra("id", id);
-                                view.getContext().startActivity(intent);
-                            }
-                        });
                     }
                     break;
             }
         }
 
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v == btnProductos){
+            Intent intent = new Intent(getApplicationContext(), ProductoActivity.class);
+            // intent.putExtra("id", id);
+            // view.getContext().startActivity(intent);
+            startActivity(intent);
+
+        }
     }
 }
