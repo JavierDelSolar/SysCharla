@@ -12,6 +12,8 @@
         <activity android:name=".CambioPassActivity"></activity>
         <activity android:name=".CharlaActivity" />
         <activity android:name=".MenuActivity" />
+        <activity android:name=".ProductoActivity"/>
+        <activity android:name=".DetalleProductoActivity"/>
         <activity
             android:name=".LogueoActivity"
             android:label="@string/TituloLogueo">
