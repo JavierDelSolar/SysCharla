@@ -12,45 +12,56 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.cibertec.syscharla.Adapters.ProductoAdapter;
 import com.cibertec.syscharla.Clases.Producto;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductoActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
+    private List<Producto> listaProductos;
     private RecyclerView rvListaProductos;
     private RecyclerView.LayoutManager layoutManager;
-    private List<Producto> listaProductos;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_producto);
-
-        rvListaProductos = findViewById(R.id.rvListaProductos);
+        llenarProductos();
+        rvListaProductos = findViewById(R.id.rvProductos);
         layoutManager = new LinearLayoutManager(this);
-        ProductoAdapter adapter = new ProductoAdapter(R.layout.item_lista_producto, listaProductos, new ProductoAdapter.OnItemClickListener() {
 
-            @Override
-            public void onItemClick(Producto producto, int position) {
-                Toast.makeText(ProductoActivity.this, "Producto Seleccionado: " + producto.getNombre(), Toast.LENGTH_LONG).show();
-            }
-        });
+        ProductoAdapter adapter = new ProductoAdapter(this,R.layout.item_lista_producto,
+                listaProductos);
+
+
         rvListaProductos.setLayoutManager(layoutManager);
         rvListaProductos.setAdapter(adapter);
-        rvListaProductos.setOnClickListener((View.OnClickListener) this);
+        rvListaProductos.setOnItemClickListener(this);
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Producto producto = this.listaProductos.get(position);
-        Toast.makeText(ProductoActivity.this,
-                producto.getNombre(), Toast.LENGTH_LONG).show();
+    private void llenarProductos(){
 
-
-        Intent intent = new Intent(ProductoActivity.this, DetalleProductoActivity.class);
-        intent.putExtra("mi Producto es: ", producto);
-        startActivity(intent);
+        listaProductos =   new ArrayList<Producto>();
+        Producto    producto    =   new Producto("Java Fundamentals Developers", 1000, "Desarrollo de los Fundamentos de Java",R.mipmap.ciberseguridad,"Suscrito");
+        listaProductos.add(producto);
+        producto    =   new Producto("Java Web Developers", 1600, "Desarrollo Web de Java",R.mipmap.ciberseguridad,"Suscrito");
+        listaProductos.add(producto);
     }
-}
+
+        @Override
+        public void onItemClick(AdapterView<?> par, View view, int position, long id) {
+            Producto producto = this.listaProductos.get(position);
+            Toast.makeText(ProductoActivity.this,
+                    producto.getNombre(), Toast.LENGTH_LONG).show();
+
+
+            Intent intent = new Intent(ProductoActivity.this, DetalleProductoActivity.class);
+            intent.putExtra("Mi producto", producto);
+            startActivity(intent);
+        }
+    }
+
 
 
 

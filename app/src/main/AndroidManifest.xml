@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.cibertec.syscharla">
 
     <application
@@ -9,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CharlaDetalleActivity"
+        <activity
+            android:name=".CharlaDetalleActivity"
             android:label="@string/TituloDetaCharla"
             android:parentActivityName=".MenuActivity"></activity>
         <activity
@@ -32,6 +34,14 @@
             android:name=".MenuActivity"
             android:label="@string/TituloMenuPrin"
             android:parentActivityName=".LogueoActivity" />
+        <activity
+            android:name=".ProductoActivity"
+            android:label="CIBER-Productos"
+            android:parentActivityName=".MenuActivity"/>
+        <activity
+            android:name=".DetalleProductoActivity"
+            android:label="CIBER-Mis Productos"
+            android:parentActivityName=".ProductoActivity"/>
         <activity
             android:name=".LogueoActivity"
             android:label="@string/TituloLogueo">
