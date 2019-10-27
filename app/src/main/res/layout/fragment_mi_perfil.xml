@@ -11,7 +11,7 @@
         android:layout_height="match_parent">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/ivFoto"
+            android:id="@+id/ivFotoMP"
             android:layout_width="187dp"
             android:layout_height="144dp"
             android:layout_marginTop="4dp"
@@ -31,7 +31,7 @@
             android:background="@android:color/background_light"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.537"
-            app:layout_constraintStart_toStartOf="@+id/ivFoto"
+            app:layout_constraintStart_toStartOf="@+id/ivFotoMP"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@mipmap/ic_camara" />
 
@@ -45,7 +45,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivFoto">
+            app:layout_constraintTop_toBottomOf="@+id/ivFotoMP">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tie_NombresMP"

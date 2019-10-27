@@ -4,12 +4,12 @@ import java.io.Serializable;
 
 public class Producto implements Serializable {
     private String nombre;
-    private int costo;
+    private double costo;
     private String descripcion;
-    private String estado;
+    private int estado;
     private int idFoto;
 
-    public Producto(String nombre, int costo, String descripcion, int idFoto, String estado) {
+    public Producto(String nombre, double costo, String descripcion, int idFoto, int estado) {
         this.nombre = nombre;
         this.costo = costo;
         this.descripcion = descripcion;
@@ -25,9 +25,9 @@ public class Producto implements Serializable {
         this.nombre = nombre;
     }
 
-    public int getCosto() { return costo; }
+    public double getCosto() { return costo; }
 
-    public void setCosto(int costo) {
+    public void setCosto(double costo) {
         this.costo = costo;
     }
 
@@ -39,11 +39,11 @@ public class Producto implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public String getEstado() {
+    public int getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(int estado) {
         this.estado = estado;
     }
 

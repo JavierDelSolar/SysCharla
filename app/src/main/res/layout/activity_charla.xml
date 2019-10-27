@@ -41,7 +41,7 @@
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
-            android:id="@+id/tvDescripcion"
+            android:id="@+id/tvDescripcionDP"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -61,7 +61,7 @@
             android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvDescripcion">
+            app:layout_constraintTop_toBottomOf="@+id/tvDescripcionDP">
 
             <TableRow
                 android:layout_width="match_parent"

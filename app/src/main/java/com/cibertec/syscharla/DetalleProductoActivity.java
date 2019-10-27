@@ -24,27 +24,28 @@ public class DetalleProductoActivity extends AppCompatActivity {
 
         this.inicializarUI();
 
-        Producto producto   = (Producto) getIntent().getSerializableExtra("Mi Producto");
+       Producto producto   = (Producto) getIntent().getSerializableExtra("Producto");
         cargarUI(producto);
     }
     private void inicializarUI(){
-        this.tvNombre = findViewById(R.id.tvNombre);
-        this.tvDescripcion = findViewById(R.id.tvDescripcion);
-        this.tvCosto = findViewById(R.id.tvCosto);
-        this.tvEstado = findViewById(R.id.tvEstado);
-        this.ivFoto = findViewById(R.id.ivFoto);
+        this.tvNombre = findViewById(R.id.tvNombreDP);
+        this.tvDescripcion = findViewById(R.id.tvDescripcionDP);
+        this.tvCosto = findViewById(R.id.tvCostoDP);
+      //  this.tvEstado = findViewById(R.id.tvEstado);
+        this.ivFoto = findViewById(R.id.ivFotoDP);
     }
 
     private void cargarUI(Producto producto){
         this.tvNombre.setText(producto.getNombre());
         this.tvDescripcion.setText(producto.getDescripcion());
-        this.tvCosto.setText(producto.getCosto());
-        this.tvEstado.setText(producto.getEstado());
+       this.tvCosto.setText("S/." + String.valueOf(producto.getCosto()));
+        this.ivFoto.setImageResource(producto.getIdFoto());
+    //   this.tvEstado.setText(producto.getEstado());
 
-        int icono = getResources()
+      /*  int icono = getResources()
                 .getIdentifier(producto.getNombre(), "mipmap",
                         getPackageName());
-        this.ivFoto.setImageResource(icono);
+        this.ivFoto.setImageResource(icono);*/
 
     }
 }

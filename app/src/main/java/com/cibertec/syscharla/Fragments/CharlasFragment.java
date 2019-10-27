@@ -30,7 +30,6 @@ import java.util.List;
 public class CharlasFragment extends Fragment {
     private RecyclerView rvListaCharlas;
     private List<Charla> listaCharlas;
-
     private CharlaAdapter adapter;
 
     public CharlasFragment() {

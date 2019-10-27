@@ -13,8 +13,6 @@ import com.cibertec.syscharla.Clases.Charla;
 
 import java.text.SimpleDateFormat;
 
-import static android.view.View.GONE;
-
 public class CharlaActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView tvTitulo, tvDescripcion, tvExpositor, tvFecha, tvDireccion;
@@ -29,7 +27,7 @@ public class CharlaActivity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_charla);
 
         tvTitulo = findViewById(R.id.tvTitulo);
-        tvDescripcion = findViewById(R.id.tvDescripcion);
+        tvDescripcion = findViewById(R.id.tvDescripcionDP);
         tvExpositor = findViewById(R.id.tvExpositor);
         tvFecha = findViewById(R.id.tvFecha);
         tvDireccion = findViewById(R.id.tvDireccion);
