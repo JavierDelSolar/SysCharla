@@ -9,8 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Registro2Activity"></activity>
-        <activity android:name=".Registro1Activity" />
+        <activity android:name=".Registro2Activity"
+            android:label="@string/TituloRegistro"
+            android:parentActivityName=".Registro1Activity"></activity>
+        <activity android:name=".Registro1Activity"    android:label="@string/TituloRegistro"
+            android:parentActivityName=".LogueoActivity"/>
         <activity
             android:name=".CharlaDetalleActivity"
             android:label="@string/TituloDetaCharla"
