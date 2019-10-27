@@ -1,7 +1,5 @@
 package com.cibertec.syscharla.Clases;
 
-import android.graphics.drawable.Drawable;
-
 import java.io.Serializable;
 import java.util.Date;
 
@@ -15,7 +13,7 @@ public class Charla implements Serializable {
     private String expositor;
     private boolean status;
     private int idFoto;
-
+    private int idFotoExpositor;
 
     public Charla() {
     }
@@ -28,6 +26,7 @@ public class Charla implements Serializable {
         this.direccion = direccion;
         this.idFoto = idFoto;
         this.fechahora = fechahora;
+
     }
     public Charla(String nombre, String descripcion,String expositor,Date fechahora, int idFoto) {
         this.nombre = nombre;
@@ -36,6 +35,15 @@ public class Charla implements Serializable {
         this.fechahora = fechahora;
         this.setIdFoto(idFoto);
     }
+    public Charla(String nombre, String descripcion,String expositor,Date fechahora, int idFoto, int idFotoExpositor) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.expositor = expositor;
+        this.fechahora = fechahora;
+        this.idFoto = idFoto;
+        this.setIdFotoExpositor(idFotoExpositor);
+    }
+
     public int getId() {
         return id;
     }
@@ -98,5 +106,13 @@ public class Charla implements Serializable {
 
     public void setIdFoto(int idFoto) {
         this.idFoto = idFoto;
+    }
+
+    public int getIdFotoExpositor() {
+        return idFotoExpositor;
+    }
+
+    public void setIdFotoExpositor(int idFotoExpositor) {
+        this.idFotoExpositor = idFotoExpositor;
     }
 }

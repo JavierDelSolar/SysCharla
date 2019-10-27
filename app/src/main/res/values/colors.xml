@@ -8,4 +8,6 @@
     <color name="colorAccent">#D81B60</color>
     <color name="colorButton">#CDD3F5</color>
     <color name="colorFondo">#E9ECF8</color>
+    <color name="colorCupos">#0126F8</color>
+    <color name="colorBorde">#CFCDCD</color>
 </resources>
