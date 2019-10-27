@@ -31,7 +31,7 @@ public class CharlaActivity extends AppCompatActivity {
         tvTitulo = findViewById(R.id.tvTitulo);
         tvDescripcion = findViewById(R.id.tvDescripcion);
         tvExpositor = findViewById(R.id.tvExpositor);
-        tvFecha = findViewById(R.id.tvTitulo);
+        tvFecha = findViewById(R.id.tvFecha);
         tvDireccion = findViewById(R.id.tvDireccion);
         ivCharla = findViewById(R.id.ivCharla);
         btnProductos = findViewById(R.id.btnProductos);
