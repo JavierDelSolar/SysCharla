@@ -15,7 +15,7 @@ import java.text.SimpleDateFormat;
 
 import static android.view.View.GONE;
 
-public class CharlaActivity extends AppCompatActivity {
+public class CharlaActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView tvTitulo, tvDescripcion, tvExpositor, tvFecha, tvDireccion;
     private ImageView ivCharla;
@@ -35,6 +35,7 @@ public class CharlaActivity extends AppCompatActivity {
         tvDireccion = findViewById(R.id.tvDireccion);
         ivCharla = findViewById(R.id.ivCharla);
         btnProductos = findViewById(R.id.btnProductos);
+        btnProductos.setOnClickListener(this);
 
 
         String opcion = getIntent().getStringExtra("Opcion");
@@ -53,20 +54,22 @@ public class CharlaActivity extends AppCompatActivity {
                         ivCharla.setImageResource(charla.getIdFoto());
                         tvFecha.setText((dateFormat.format(charla.getFechahora())));
                         tvDireccion.setText(charla.getDireccion());
-
-                        btnProductos.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Intent intent = new Intent(view.getContext(), ProductoActivity.class);
-                                intent.putExtra("id", id);
-                                view.getContext().startActivity(intent);
-                            }
-                        });
                     }
                     break;
             }
         }
 
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v == btnProductos){
+            Intent intent = new Intent(getApplicationContext(), ProductoActivity.class);
+            // intent.putExtra("id", id);
+            // view.getContext().startActivity(intent);
+            startActivity(intent);
+
+        }
     }
 }
