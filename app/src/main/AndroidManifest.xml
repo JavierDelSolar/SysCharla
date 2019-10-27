@@ -15,9 +15,10 @@
         <activity android:name=".Registro1Activity"    android:label="@string/TituloRegistro"
             android:parentActivityName=".LogueoActivity"/>
         <activity
+
             android:name=".CharlaDetalleActivity"
             android:label="@string/TituloDetaCharla"
-            android:parentActivityName=".MenuActivity" />
+            android:parentActivityName=".MenuActivity"></activity>
         <activity
             android:name=".CambioEmailActivity"
             android:label="@string/TituloPriva"
@@ -38,6 +39,14 @@
             android:name=".MenuActivity"
             android:label="@string/TituloMenuPrin"
             android:parentActivityName=".LogueoActivity" />
+        <activity
+            android:name=".ProductoActivity"
+            android:label="CIBER-Productos"
+            android:parentActivityName=".MenuActivity"/>
+        <activity
+            android:name=".DetalleProductoActivity"
+            android:label="CIBER-Mis Productos"
+            android:parentActivityName=".ProductoActivity"/>
         <activity
             android:name=".LogueoActivity"
             android:label="@string/TituloLogueo">

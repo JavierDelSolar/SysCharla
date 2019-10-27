@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cibertec.syscharla.Clases.Producto;
+import com.cibertec.syscharla.ProductoActivity;
 import com.cibertec.syscharla.R;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.ViewHo
     private List<Producto> listaProductos;
     private OnItemClickListener itemClickListener;
 
-    public ProductoAdapter(int layout, List<Producto>   listaProductos, OnItemClickListener itemClickListener){
+    public ProductoAdapter(ProductoActivity layout, int listaProductos, List<Producto> itemClickListener){
         this.layout =   layout  ;
         this.listaProductos  =   listaProductos;
         this.itemClickListener  =   itemClickListener;
@@ -70,8 +71,8 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.ViewHo
         public void bind(final Producto producto, final OnItemClickListener listener){
             tvNombre.setText(producto.getNombre());
             tvDescripcion.setText(producto.getDescripcion());
-            tvCosto.setText(producto.getCosto());
             tvEstado.setText(producto.getEstado());
+
             ivFoto.setImageResource(producto.getIdFoto());
 
             itemView.setOnClickListener(new View.OnClickListener() {
