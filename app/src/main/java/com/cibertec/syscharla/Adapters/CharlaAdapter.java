@@ -20,10 +20,12 @@ public class CharlaAdapter extends RecyclerView.Adapter<CharlaAdapter.ViewHolder
 
     private int layout;
     private List<Charla> listaCharlas;
+    private OnItemClickListener itemClickListener;
 
-    public CharlaAdapter(int layout, List<Charla> listaCharlas) {
+    public CharlaAdapter(int layout, List<Charla> listaCharlas, OnItemClickListener itemClickListener) {
         this.layout = layout;
         this.listaCharlas = listaCharlas;
+        this.itemClickListener = itemClickListener;
     }
 
     @NonNull
@@ -38,15 +40,9 @@ public class CharlaAdapter extends RecyclerView.Adapter<CharlaAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull CharlaAdapter.ViewHolder viewHolder,
                                  int i) {
-        viewHolder.ivFotoLstCharla.setImageResource(listaCharlas.get(i).getIdFoto());
-        viewHolder.tvTituloCharlaLC.setText(listaCharlas.get(i).getNombre());
 
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy hh:mm");
-        String dateString = format.format(  listaCharlas.get(i).getFechahora());
-//        Date date       = format.parse ( "2009-12-31" );
-        viewHolder.tvFechaHoraLC.setText(dateString);
-        viewHolder.tvDescripcionLC.setText(listaCharlas.get(i).getDescripcion());
-        viewHolder.tvExpositorLC.setText(listaCharlas.get(i).getExpositor());
+        viewHolder.bind(this.listaCharlas.get(i), this.itemClickListener);
+
     }
 
     @Override
@@ -72,5 +68,29 @@ public class CharlaAdapter extends RecyclerView.Adapter<CharlaAdapter.ViewHolder
             tvDescripcionLC = itemView.findViewById(R.id.tvDescripcionLC);
             tvExpositorLC = itemView.findViewById(R.id.tvExpositorLC);
         }
+        public void bind(final Charla charla, final OnItemClickListener listener){
+
+            ivFotoLstCharla.setImageResource(charla.getIdFoto());
+            tvTituloCharlaLC.setText(charla.getNombre());
+
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+            String dateString = format.format(  charla.getFechahora());
+
+            tvFechaHoraLC.setText(dateString);
+            tvDescripcionLC.setText(charla.getDescripcion());
+            tvExpositorLC.setText(charla.getExpositor());
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onItemClick(charla, getAdapterPosition());
+
+                }
+            });
+        }
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(Charla charla, int i);
     }
 }
