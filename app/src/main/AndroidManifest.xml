@@ -50,7 +50,7 @@
             android:parentActivityName=".ProductoActivity"/>
         <activity
             android:name=".LogueoActivity"
-            android:label="@string/TituloLogueo">
+            android:label="Charlas - Cibertec">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
