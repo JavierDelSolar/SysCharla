@@ -31,7 +31,7 @@ public class MisCharlasAdapter extends RecyclerView.Adapter<MisCharlasAdapter.Mi
 
     public class MisCharlasVH extends RecyclerView.ViewHolder{
 
-        public TextView tvTitulo, tvExpositor, tvFecha;
+        public TextView tvTitulo, tvFecha, tvDescripcion;
         public CardView cvCharla;
         public ImageView ivCharla;
 
@@ -40,7 +40,7 @@ public class MisCharlasAdapter extends RecyclerView.Adapter<MisCharlasAdapter.Mi
             cvCharla = v.findViewById(R.id.cvCharla);
             tvTitulo = v.findViewById(R.id.tvTitulo);
             tvFecha = v.findViewById(R.id.tvFecha);
-            tvExpositor = v.findViewById(R.id.tvExpositor);
+            tvDescripcion = v.findViewById(R.id.tvDescripcion);
             ivCharla = v.findViewById(R.id.ivCharla);
         }
 
@@ -58,7 +58,7 @@ public class MisCharlasAdapter extends RecyclerView.Adapter<MisCharlasAdapter.Mi
     @Override
     public void onBindViewHolder(MisCharlasVH holder, final int pos){
         holder.tvTitulo.setText(charlas.get(pos).getNombre());
-        holder.tvExpositor.setText(charlas.get(pos).getExpositor());
+        holder.tvDescripcion.setText(charlas.get(pos).getDescripcion());
         holder.tvFecha.setText(dateFormat.format(charlas.get(pos).getFechahora()));
         holder.ivCharla.setImageResource(charlas.get(pos).getIdFoto());
 
