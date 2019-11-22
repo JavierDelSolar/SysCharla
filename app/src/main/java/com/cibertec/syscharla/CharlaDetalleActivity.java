@@ -49,7 +49,7 @@ public class CharlaDetalleActivity extends AppCompatActivity {
         if(bundle != null) {
             charla = (Charla) bundle.getSerializable("charla");
             SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy hh:mm");
-            String dateString = format.format(charla.getFechahora());
+            String dateString = format.format(charla.getFecha());
 
             tvTituloCharlaDC.setText(charla.getNombre().toString());
             tvDescripcionDC.setText(charla.getDescripcion().toString());

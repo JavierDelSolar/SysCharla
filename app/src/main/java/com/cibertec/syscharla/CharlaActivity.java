@@ -45,12 +45,12 @@ public class CharlaActivity extends AppCompatActivity implements View.OnClickLis
                     //btnAsistencia.setVisibility(GONE);
                     if(bundle != null){
                         charla = (Charla)bundle.getSerializable("charla");
-                        final int id = charla.getId();
+                        final int id = charla.getIDCharla();
                         tvTitulo.setText(charla.getNombre());
                         tvDescripcion.setText(charla.getDescripcion());
                         tvExpositor.setText(charla.getExpositor());
                         ivCharla.setImageResource(charla.getIdFoto());
-                        tvFecha.setText((dateFormat.format(charla.getFechahora())));
+                        tvFecha.setText((dateFormat.format(charla.getFecha())));
                         tvDireccion.setText(charla.getDireccion());
                     }
                     break;

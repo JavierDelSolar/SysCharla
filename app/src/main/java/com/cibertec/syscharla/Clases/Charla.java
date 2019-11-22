@@ -5,91 +5,93 @@ import java.util.Date;
 
 public class Charla implements Serializable {
 
-    private int id;
-    private String nombre;
-    private Date fechahora;
-    private String direccion;
-    private String descripcion;
-    private String expositor;
-    private boolean status;
-    private int idFoto;
-    private int idFotoExpositor;
 
-    public Charla() {
+    public int getIDCharla() {
+        return IDCharla;
     }
 
-    public Charla(int id, String nombre, String descripcion, String expositor, String direccion, int idFoto, Date fechahora) {
-        this.id = id;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.expositor = expositor;
-        this.direccion = direccion;
-        this.idFoto = idFoto;
-        this.fechahora = fechahora;
-
-    }
-    public Charla(String nombre, String descripcion,String expositor,Date fechahora, int idFoto) {
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.setExpositor(expositor);
-        this.fechahora = fechahora;
-        this.setIdFoto(idFoto);
-    }
-    public Charla(String nombre, String descripcion,String expositor,Date fechahora, int idFoto, int idFotoExpositor) {
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.expositor = expositor;
-        this.fechahora = fechahora;
-        this.idFoto = idFoto;
-        this.setIdFotoExpositor(idFotoExpositor);
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public void setIDCharla(int IDCharla) {
+        this.IDCharla = IDCharla;
     }
 
     public String getNombre() {
-        return nombre;
+        return Nombre;
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        Nombre = nombre;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getFecha() {
+        return Fecha;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setFecha(String fecha) {
+        Fecha = fecha;
     }
 
     public String getDireccion() {
-        return direccion;
+        return Direccion;
     }
 
     public void setDireccion(String direccion) {
-        this.direccion = direccion;
+        Direccion = direccion;
     }
 
-    public Date getFechahora() {
-        return fechahora;
+    public String getLatitud() {
+        return Latitud;
     }
 
-    public void setFechahora(Date fechahora) {
-        this.fechahora = fechahora;
+    public void setLatitud(String latitud) {
+        Latitud = latitud;
     }
 
-    public boolean isStatus() {
-        return status;
+    public String getLongitud() {
+        return Longitud;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setLongitud(String longitud) {
+        Longitud = longitud;
+    }
+
+    public int getCupos() {
+        return Cupos;
+    }
+
+    public void setCupos(int cupos) {
+        Cupos = cupos;
+    }
+
+    public String getFoto() {
+        return Foto;
+    }
+
+    public void setFoto(String foto) {
+        Foto = foto;
+    }
+
+    public String getDescripcion() {
+        return Descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        Descripcion = descripcion;
+    }
+
+    public String getObservacion() {
+        return Observacion;
+    }
+
+    public void setObservacion(String observacion) {
+        Observacion = observacion;
+    }
+
+    public String getBase64String() {
+        return base64String;
+    }
+
+    public void setBase64String(String base64String) {
+        this.base64String = base64String;
     }
 
     public String getExpositor() {
@@ -98,6 +100,14 @@ public class Charla implements Serializable {
 
     public void setExpositor(String expositor) {
         this.expositor = expositor;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
     public int getIdFoto() {
@@ -115,4 +125,36 @@ public class Charla implements Serializable {
     public void setIdFotoExpositor(int idFotoExpositor) {
         this.idFotoExpositor = idFotoExpositor;
     }
+
+    public Charla(int IDCharla, String nombre, String fecha, String direccion, String latitud, String longitud, int cupos, String foto, String descripcion, String observacion, String base64String) {
+        this.IDCharla = IDCharla;
+        Nombre = nombre;
+        Fecha = fecha;
+        Direccion = direccion;
+        Latitud = latitud;
+        Longitud = longitud;
+        Cupos = cupos;
+        Foto = foto;
+        Descripcion = descripcion;
+        Observacion = observacion;
+        this.base64String = base64String;
+    }
+
+    private int IDCharla;
+    private String Nombre;
+    private String Fecha ;
+    private String Direccion;
+    private String Latitud;
+    private String Longitud;
+    private int Cupos;
+    private String Foto;
+    private String Descripcion;
+    private String Observacion;
+    private String base64String;
+    private String expositor;
+    private boolean status;
+    private int idFoto;
+    private int idFotoExpositor;
+
+
 }

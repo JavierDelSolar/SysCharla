@@ -58,7 +58,7 @@ public class MisCharlasFragment extends Fragment implements DialogInterface.OnCl
 
         for(int i=1; i <= 20 ; i++){
             int num = r.nextInt(3-0);
-            charlas.add(new Charla(i, titulo[num] + ": " +i, descripcion, expositor[num], direccion[num], imagen[num], fecha));
+           // charlas.add(new Charla(i, titulo[num] + ": " +i, descripcion, expositor[num], direccion[num], imagen[num], fecha));
         }
 
         rvMisCharlas = view.findViewById(R.id.rvMisCharlas);

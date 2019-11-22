@@ -17,6 +17,7 @@ public interface CharlaApi {
     Call<List<Charla>> getCharla();
 
 
-
+    @GET("ListAllCharla")
+    Call<List<Charla>> getListAllCharla();
 
 }
