@@ -37,7 +37,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MisCharlasFragment extends Fragment implements DialogInterface.OnClickListener {
+public class MisCharlasFragment extends Fragment {
 
     private RecyclerView rvMisCharlas;
     private MisCharlasAdapter adapter;
@@ -58,7 +58,7 @@ public class MisCharlasFragment extends Fragment implements DialogInterface.OnCl
         rvMisCharlas = view.findViewById(R.id.rvMisCharlas);
         ivFiltro = view.findViewById(R.id.ivFiltro);
 
-        ListarMisCharlas("111",1);
+        ListarMisCharlas("110",1, true);
 
 
         ivFiltro.setOnClickListener(new View.OnClickListener() {
@@ -74,19 +74,23 @@ public class MisCharlasFragment extends Fragment implements DialogInterface.OnCl
                             @Override
                             public void onClick(DialogInterface dialog, int id) {
                                 String evento;
-
+                                int orden = 1;
                                 CheckBox cbEventoHoy = dialogView.findViewById(R.id.cbEventoHoy);
                                 CheckBox cbEventoPosterior = dialogView.findViewById(R.id.cbEventoPosterior);
                                 CheckBox cbEventoPasados = dialogView.findViewById(R.id.cbEventoPasados);
-                                RadioButton rbOrdenFechaDesc = dialogView.findViewById(R.id.rbOrdenFechaDesc);
                                 RadioButton rbOrdenFechaAsc = dialogView.findViewById(R.id.rbOrdenFechaAsc);
-                                RadioButton rbOrdenAlfaDesc = dialogView.findViewById(R.id.rbOrdenAlfaDesc);
+                                RadioButton rbOrdenFechaDesc = dialogView.findViewById(R.id.rbOrdenFechaDesc);
                                 RadioButton rbOrdenAlfaAsc = dialogView.findViewById(R.id.rbOrdenAlfaAsc);
+                                RadioButton rbOrdenAlfaDesc = dialogView.findViewById(R.id.rbOrdenAlfaDesc);
                                 evento = (cbEventoHoy.isChecked())?"1":"0";
                                 evento += (cbEventoPosterior.isChecked())?"1":"0";
                                 evento += (cbEventoPasados.isChecked())?"1":"0";
-                                
-                                ListarMisCharlas(evento,1);
+                                orden = (rbOrdenFechaAsc.isChecked())?1:orden;
+                                orden = (rbOrdenFechaDesc.isChecked())?2:orden;
+                                orden = (rbOrdenAlfaAsc.isChecked())?3:orden;
+                                orden = (rbOrdenAlfaDesc.isChecked())?4:orden;
+
+                                ListarMisCharlas(evento,orden, false);
                             }
                         })
                         .setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
@@ -99,7 +103,7 @@ public class MisCharlasFragment extends Fragment implements DialogInterface.OnCl
         });
         return view;
     }
-    private void ListarMisCharlas(String Tipo, int OrderBy) {
+    private void ListarMisCharlas(String Tipo, int OrderBy, final boolean prueba) {
         try {
 
             String sFechaActual = "";
@@ -126,7 +130,13 @@ public class MisCharlasFragment extends Fragment implements DialogInterface.OnCl
                             }
                         });
                         rvMisCharlas.setLayoutManager(new LinearLayoutManager(getActivity()));
-                        rvMisCharlas.setAdapter(adapter);
+                        if(prueba){
+                            rvMisCharlas.setAdapter(adapter);
+                        }else{
+                            Toast.makeText(getContext(), "Recargando...", Toast.LENGTH_LONG).show();
+                            adapter.notifyDataSetChanged();
+                        }
+
                     }else
                     {
                         Toast.makeText(getActivity(), response.message(), Toast.LENGTH_LONG).show();
@@ -141,8 +151,5 @@ public class MisCharlasFragment extends Fragment implements DialogInterface.OnCl
             Toast.makeText(getActivity(), ex.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
-    @Override
-    public void onClick(DialogInterface dialogInterface, int i) {
 
-    }
 }
