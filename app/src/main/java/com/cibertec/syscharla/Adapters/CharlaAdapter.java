@@ -70,10 +70,10 @@ public class CharlaAdapter extends RecyclerView.Adapter<CharlaAdapter.ViewHolder
             ivFotoLstCharla.setImageResource(charla.getIdFoto());
             tvTituloCharlaLC.setText(charla.getNombre());
 
-            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy hh:mm");
-            String dateString = format.format(  charla.getFecha());
+           // SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+          //  String dateString = format.format(  charla.getFecha());
 
-            tvFechaHoraLC.setText(dateString);
+        //    tvFechaHoraLC.setText(dateString);
             tvDescripcionLC.setText(charla.getDescripcion());
             tvExpositorLC.setText(charla.getExpositor());
 

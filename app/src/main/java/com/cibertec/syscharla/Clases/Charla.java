@@ -1,5 +1,7 @@
 package com.cibertec.syscharla.Clases;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -102,13 +104,13 @@ public class Charla implements Serializable {
         this.expositor = expositor;
     }
 
-    public boolean isStatus() {
-        return status;
-    }
+//    public boolean isStatus() {
+//        return status;
+//    }
 
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
+//    public void setStatus(boolean status) {
+//        this.status = status;
+//    }
 
     public int getIdFoto() {
         return idFoto;
@@ -141,18 +143,28 @@ public class Charla implements Serializable {
     }
 
     private int IDCharla;
+    @SerializedName("Nombre")
     private String Nombre;
+    @SerializedName("Fecha")
     private String Fecha ;
+    @SerializedName("Direccion")
     private String Direccion;
+    @SerializedName("Latitud")
     private String Latitud;
+    @SerializedName("Longitud")
     private String Longitud;
     private int Cupos;
+    @SerializedName("Foto")
     private String Foto;
+    @SerializedName("Descripcion")
     private String Descripcion;
+    @SerializedName("Observacion")
     private String Observacion;
+    @SerializedName("base64String")
     private String base64String;
+    @SerializedName("expositor")
     private String expositor;
-    private boolean status;
+  //  private boolean status;
     private int idFoto;
     private int idFotoExpositor;
 
