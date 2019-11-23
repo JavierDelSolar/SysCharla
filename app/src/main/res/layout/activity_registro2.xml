@@ -24,10 +24,12 @@
         android:id="@+id/ibCamaraRE"
         android:layout_width="45dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="192dp"
+        android:layout_marginBottom="4dp"
         android:background="@android:color/background_light"
+        app:layout_constraintBottom_toBottomOf="@+id/ivFotoDP"
         app:layout_constraintStart_toStartOf="@+id/ivFotoDP"
-        app:srcCompat="@mipmap/ic_camara"
-        tools:layout_editor_absoluteY="105dp" />
+        app:srcCompat="@mipmap/ic_camara" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_NombresRE"
@@ -117,6 +119,18 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/til_DireccionRE" />
+
+    <ImageButton
+        android:id="@+id/ibCarpetaRE"
+        android:layout_width="45dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:background="@android:color/background_light"
+        app:layout_constraintBottom_toBottomOf="@+id/ivFotoDP"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.407"
+        app:layout_constraintStart_toEndOf="@+id/ibCamaraRE"
+        app:srcCompat="@drawable/ic_folder_black_24dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -31,13 +31,26 @@
                 android:id="@+id/ibCamaraMP"
                 android:layout_width="57dp"
                 android:layout_height="39dp"
-                android:layout_marginTop="112dp"
+                android:layout_marginBottom="16dp"
                 android:background="@android:color/background_light"
+                app:layout_constraintBottom_toBottomOf="@+id/ivFotoMP"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.537"
+                app:layout_constraintHorizontal_bias="0.675"
                 app:layout_constraintStart_toStartOf="@+id/ivFotoMP"
-                app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@mipmap/ic_camara" />
+
+            <ImageButton
+                android:id="@+id/ibCarpetaMP"
+                android:layout_width="45dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:background="@android:color/background_light"
+                app:layout_constraintBottom_toBottomOf="@+id/ivFotoMP"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/ibCamaraMP"
+                app:srcCompat="@drawable/ic_folder_black_24dp"
+                tools:ignore="VectorDrawableCompat" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_NombresMP"
@@ -162,7 +175,7 @@
                 android:layout_marginBottom="8dp"
                 android:clickable="true"
                 android:src="@drawable/ic_save_black_24dp"
-                app:backgroundTint="@color/colorButton"
+                app:backgroundTint="@color/colorPrimary"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btnConfigurarMP" />
