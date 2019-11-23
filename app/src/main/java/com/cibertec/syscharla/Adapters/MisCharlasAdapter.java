@@ -59,7 +59,7 @@ public class MisCharlasAdapter extends RecyclerView.Adapter<MisCharlasAdapter.Mi
     public void onBindViewHolder(MisCharlasVH holder, final int pos){
         holder.tvTitulo.setText(charlas.get(pos).getNombre());
         holder.tvDescripcion.setText(charlas.get(pos).getDescripcion());
-        holder.tvFecha.setText(dateFormat.format(charlas.get(pos).getFechahora()));
+        holder.tvFecha.setText(dateFormat.format(charlas.get(pos).getFecha()));
         holder.ivCharla.setImageResource(charlas.get(pos).getIdFoto());
 
         holder.cvCharla.setOnClickListener(new View.OnClickListener(){

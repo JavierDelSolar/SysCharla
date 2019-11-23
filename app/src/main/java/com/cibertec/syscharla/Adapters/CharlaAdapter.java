@@ -38,11 +38,8 @@ public class CharlaAdapter extends RecyclerView.Adapter<CharlaAdapter.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CharlaAdapter.ViewHolder viewHolder,
-                                 int i) {
-
+    public void onBindViewHolder(@NonNull CharlaAdapter.ViewHolder viewHolder, int i) {
         viewHolder.bind(this.listaCharlas.get(i), this.itemClickListener);
-
     }
 
     @Override
@@ -73,10 +70,6 @@ public class CharlaAdapter extends RecyclerView.Adapter<CharlaAdapter.ViewHolder
             ivFotoLstCharla.setImageResource(charla.getIdFoto());
             tvTituloCharlaLC.setText(charla.getNombre());
 
-            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy hh:mm");
-            String dateString = format.format(  charla.getFechahora());
-
-            tvFechaHoraLC.setText(dateString);
             tvDescripcionLC.setText(charla.getDescripcion());
             tvExpositorLC.setText(charla.getExpositor());
 
