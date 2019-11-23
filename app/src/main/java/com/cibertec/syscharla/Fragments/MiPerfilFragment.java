@@ -25,8 +25,19 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.cibertec.syscharla.Clases.Usuario;
+import com.cibertec.syscharla.Interfaces.Usuario_I;
+import com.cibertec.syscharla.LogueoActivity;
 import com.cibertec.syscharla.PrivacidadActivity;
 import com.cibertec.syscharla.R;
+import com.cibertec.syscharla.RetrofitClient;
+import com.cibertec.syscharla.Variables;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputEditText;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -34,12 +45,21 @@ import com.cibertec.syscharla.R;
 public class MiPerfilFragment extends Fragment implements View.OnClickListener{
 
     Button btnConfigurar;
-
     ImageButton ibCamaraMP;
+
+    TextInputEditText tieNombresMP;
+    TextInputEditText tieEmailMP;
+    TextInputEditText tieDireccionMP;
+    TextInputEditText tieApellidosMP;
+    TextInputEditText tieNroCelularMP;
+    FloatingActionButton fabGrabar;
+
     de.hdodenhof.circleimageview.CircleImageView ivFotoMP;
     private static final int REQUEST_TOMAR_FOTO = 100;
     private static final int REQUEST_PERMISO_CAMARA = 200;
     private static final int REQUEST_CONFIGURACION = 300;
+
+    Variables objVar = Variables.getInstance();
 
     public MiPerfilFragment() {
         // Required empty public constructor
@@ -50,15 +70,32 @@ public class MiPerfilFragment extends Fragment implements View.OnClickListener{
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_mi_perfil, container, false);
 
+        tieNombresMP = (TextInputEditText)rootView.findViewById(R.id.tie_NombresMP);
+        tieEmailMP = (TextInputEditText)rootView.findViewById(R.id.tie_EmailMP);
+        tieDireccionMP = (TextInputEditText)rootView.findViewById(R.id.tie_DireccionMP);
+        tieApellidosMP = (TextInputEditText)rootView.findViewById(R.id.tie_ApellidosMP);
+        tieNroCelularMP = (TextInputEditText)rootView.findViewById(R.id.tie_NroCelularMP);
+        fabGrabar =  (FloatingActionButton) rootView.findViewById(R.id.fab_GrabarDatos);
+
         ibCamaraMP = (ImageButton)rootView.findViewById(R.id.ibCamaraMP);
         ivFotoMP = (de.hdodenhof.circleimageview.CircleImageView)rootView.findViewById(R.id.ivFotoMP);
+        fabGrabar.setOnClickListener(this);
+
+        // OBTERNER DATOS
+
+        if(objVar.usuario != null){
+            tieNombresMP.setText(objVar.usuario.getNombres());
+            tieApellidosMP.setText(objVar.usuario.getApellidos());
+            tieEmailMP.setText(objVar.usuario.getCorreo());
+            tieDireccionMP.setText(objVar.usuario.getDireccion());
+            tieNroCelularMP.setText(objVar.usuario.getCelular());
+        }
         ibCamaraMP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AbrirCamara();
             }
         });
-
         btnConfigurar = (Button)rootView.findViewById(R.id.btnConfigurarMP);
         btnConfigurar.setOnClickListener(this);
         return rootView;
@@ -70,6 +107,48 @@ public class MiPerfilFragment extends Fragment implements View.OnClickListener{
         if(v == btnConfigurar){
             Intent intent = new Intent(getActivity(), PrivacidadActivity.class);
             startActivity(intent);
+        }
+        else if(v==fabGrabar){
+            Usuario usuario = new Usuario();
+            usuario.setIDUsuario(objVar.usuario.getIDUsuario());
+            usuario.setNombres(tieNombresMP.getText().toString());
+            usuario.setApellidos(tieApellidosMP.getText().toString());
+            usuario.setCelular(tieNroCelularMP.getText().toString());
+            usuario.setDireccion(tieDireccionMP.getText().toString());
+            usuario.setLatitud("");
+            usuario.setLongitud("");
+            usuario.setFoto("");
+
+            // validar registros
+            if(tieNombresMP.getText().toString().length() == 0){
+                Toast.makeText(getActivity(),"Ingrese Nombres",Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if(tieApellidosMP.getText().toString().length() == 0){
+                Toast.makeText(getActivity(),"Ingrese Apellidos",Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if(tieDireccionMP.getText().toString().length() == 0){
+                Toast.makeText(getActivity(),"Ingrese Dirección",Toast.LENGTH_SHORT).show();
+                return;
+            }
+            Usuario_I usuario_i = RetrofitClient.getClient().create(Usuario_I.class);
+            Call<Usuario> call = usuario_i.updateusuario(usuario);
+            call.enqueue(new Callback<Usuario>() {
+                @Override
+                public void onResponse(Call<Usuario> call, Response<Usuario> response) {
+                    if (response.isSuccessful()) {
+                        Toast.makeText(getActivity(), "Actualización Exitoso", Toast.LENGTH_LONG).show();
+                        objVar.usuario = response.body();
+
+                    }
+                }
+                @Override
+                public void onFailure(Call<Usuario> call, Throwable t) {
+                    Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            });
+
         }
     }
     @Override
@@ -145,5 +224,9 @@ public class MiPerfilFragment extends Fragment implements View.OnClickListener{
         intent.setData(uri);
         startActivityForResult(intent, REQUEST_CONFIGURACION);
     }
+
+    //Grabar datos
+
+
 
 }

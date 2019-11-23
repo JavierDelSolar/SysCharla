@@ -3,18 +3,27 @@ package com.cibertec.syscharla.Clases;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.sql.Time;
 import java.util.Date;
 
 public class Charla implements Serializable {
 
+    private int IDCharla;
+    private String Nombre;
+    @SerializedName("Fecha")
+    private String FechaHora;
+    private String Direccion;
+    private String Latitud;
+    private String Longitud;
+    private String Descripcion;
+    private String Observacion;
+    private String Foto;
+    private String expositor;
+    private boolean status;
+    //private int idFoto;
+    private int idFotoExpositor;
 
-    public int getIDCharla() {
-        return IDCharla;
-    }
 
-    public void setIDCharla(int IDCharla) {
-        this.IDCharla = IDCharla;
-    }
 
     public String getNombre() {
         return Nombre;
@@ -24,13 +33,6 @@ public class Charla implements Serializable {
         Nombre = nombre;
     }
 
-    public String getFecha() {
-        return Fecha;
-    }
-
-    public void setFecha(String fecha) {
-        Fecha = fecha;
-    }
 
     public String getDireccion() {
         return Direccion;
@@ -56,22 +58,6 @@ public class Charla implements Serializable {
         Longitud = longitud;
     }
 
-    public int getCupos() {
-        return Cupos;
-    }
-
-    public void setCupos(int cupos) {
-        Cupos = cupos;
-    }
-
-    public String getFoto() {
-        return Foto;
-    }
-
-    public void setFoto(String foto) {
-        Foto = foto;
-    }
-
     public String getDescripcion() {
         return Descripcion;
     }
@@ -88,12 +74,12 @@ public class Charla implements Serializable {
         Observacion = observacion;
     }
 
-    public String getBase64String() {
-        return base64String;
+    public String getFoto() {
+        return Foto;
     }
 
-    public void setBase64String(String base64String) {
-        this.base64String = base64String;
+    public void setFoto(String foto) {
+        Foto = foto;
     }
 
     public String getExpositor() {
@@ -104,20 +90,12 @@ public class Charla implements Serializable {
         this.expositor = expositor;
     }
 
-//    public boolean isStatus() {
-//        return status;
-//    }
-
-//    public void setStatus(boolean status) {
-//        this.status = status;
-//    }
-
-    public int getIdFoto() {
-        return idFoto;
+    public boolean isStatus() {
+        return status;
     }
 
-    public void setIdFoto(int idFoto) {
-        this.idFoto = idFoto;
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
     public int getIdFotoExpositor() {
@@ -128,45 +106,19 @@ public class Charla implements Serializable {
         this.idFotoExpositor = idFotoExpositor;
     }
 
-    public Charla(int IDCharla, String nombre, String fecha, String direccion, String latitud, String longitud, int cupos, String foto, String descripcion, String observacion, String base64String) {
-        this.IDCharla = IDCharla;
-        Nombre = nombre;
-        Fecha = fecha;
-        Direccion = direccion;
-        Latitud = latitud;
-        Longitud = longitud;
-        Cupos = cupos;
-        Foto = foto;
-        Descripcion = descripcion;
-        Observacion = observacion;
-        this.base64String = base64String;
+    public String getFechaHora() {
+        return FechaHora;
     }
 
-    private int IDCharla;
-    @SerializedName("Nombre")
-    private String Nombre;
-    @SerializedName("Fecha")
-    private String Fecha ;
-    @SerializedName("Direccion")
-    private String Direccion;
-    @SerializedName("Latitud")
-    private String Latitud;
-    @SerializedName("Longitud")
-    private String Longitud;
-    private int Cupos;
-    @SerializedName("Foto")
-    private String Foto;
-    @SerializedName("Descripcion")
-    private String Descripcion;
-    @SerializedName("Observacion")
-    private String Observacion;
-    @SerializedName("base64String")
-    private String base64String;
-    @SerializedName("expositor")
-    private String expositor;
-  //  private boolean status;
-    private int idFoto;
-    private int idFotoExpositor;
+    public void setFechaHora(String fechaHora) {
+        FechaHora = fechaHora;
+    }
 
+    public int getIDCharla() {
+        return IDCharla;
+    }
 
+    public void setIDCharla(int IDCharla) {
+        this.IDCharla = IDCharla;
+    }
 }

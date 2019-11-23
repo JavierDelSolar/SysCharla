@@ -13,18 +13,40 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.provider.Settings;
+import android.util.Base64;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-public class Registro2Activity extends AppCompatActivity {
+import com.cibertec.syscharla.Clases.Usuario;
+import com.cibertec.syscharla.Interfaces.Usuario_I;
+import com.google.android.material.textfield.TextInputEditText;
+
+import java.io.ByteArrayOutputStream;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class Registro2Activity extends AppCompatActivity implements View.OnClickListener {
 
 
     ImageButton ibCamaraRE;
+    Button btn_RegistrarRE;
+    TextInputEditText tieNombresRE;
+    TextInputEditText tieApellidosRE;
+    TextInputEditText tieNroCelularRE;
+    TextInputEditText tieDireccionRE;
+    //de.hdodenhof.circleimageview.CircleImageView
+
+    Usuario usuario = null;
+
     de.hdodenhof.circleimageview.CircleImageView ivFoto;
 
     private static final int REQUEST_TOMAR_FOTO = 100;
@@ -38,6 +60,18 @@ public class Registro2Activity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
+        //obtener parametros.
+        Bundle parametros = this.getIntent().getExtras();
+        usuario = (Usuario)parametros.getSerializable("Usuario");
+
+
+        btn_RegistrarRE = (Button) findViewById(R.id.btn_RegistrarRE);
+        tieNombresRE = (TextInputEditText) findViewById(R.id.tie_NombresRE);
+        tieApellidosRE = (TextInputEditText) findViewById(R.id.tie_ApellidosRE);
+        tieNroCelularRE = (TextInputEditText) findViewById(R.id.tie_NombresRE);
+        tieDireccionRE = (TextInputEditText) findViewById(R.id.tie_DireccionRE);
+
+
         ibCamaraRE = (ImageButton) findViewById(R.id.ibCamaraRE);
         ivFoto = (de.hdodenhof.circleimageview.CircleImageView) findViewById(R.id.ivFotoDP);
         ibCamaraRE.setOnClickListener(new View.OnClickListener() {
@@ -46,6 +80,7 @@ public class Registro2Activity extends AppCompatActivity {
                 AbrirCamara();
             }
         });
+        btn_RegistrarRE.setOnClickListener(this);
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -119,5 +154,104 @@ public class Registro2Activity extends AppCompatActivity {
         Uri uri = Uri.fromParts("package", getPackageName(), null);
         intent.setData(uri);
         startActivityForResult(intent, REQUEST_CONFIGURACION);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v == btn_RegistrarRE){
+
+            // validar registros
+            if(tieNombresRE.getText().toString().length() == 0){
+                Toast.makeText(this,"Ingrese Nombres",Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if(tieApellidosRE.getText().toString().length() == 0){
+                Toast.makeText(this,"Ingrese Apellidos",Toast.LENGTH_SHORT).show();
+                return;
+            }
+//            if(tieNroCelularRE.getText().toString().length() == 0){
+//                Toast.makeText(this,"Ingrese Nro. Celular",Toast.LENGTH_SHORT);
+//                return;
+//            }
+            if(tieDireccionRE.getText().toString().length() == 0){
+                Toast.makeText(this,"Ingrese Dirección",Toast.LENGTH_SHORT).show();
+                return;
+            }
+            RegistrarUsuario();
+        }
+    }
+//    private String convertToString()
+//    {
+//        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+//        bitmap.compress(Bitmap.CompressFormat.JPEG,60,byteArrayOutputStream);
+//        byte[] imgByte = byteArrayOutputStream.toByteArray();
+//        return Base64.encodeToString(imgByte,Base64.DEFAULT);
+//    }
+
+    public  String convertImageToBase64(Bitmap bm) {
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        assert bm != null;
+        bm.compress(Bitmap.CompressFormat.JPEG, 60, bos);
+        byte[] data = bos.toByteArray();
+        return Base64.encodeToString(data, Base64.DEFAULT + '"');
+    }
+    private void RegistrarUsuario() {
+
+   /*     progressDialog = new ProgressDialog(RetrofitActivity6.this);
+        progressDialog.setMessage(getString(R.string.loading));
+        progressDialog.setCancelable(false);
+        progressDialog.show();*/
+        // obtener imagen
+        String image = "";
+        try {
+            Bitmap bitmap = ((BitmapDrawable) ivFoto.getDrawable()).getBitmap();
+            image = convertImageToBase64(bitmap);
+
+        }catch(Exception ex){}
+        if(usuario != null) {
+            int retval = 0;
+            usuario.setNombres(tieNombresRE.getText().toString());
+            usuario.setApellidos(tieApellidosRE.getText().toString());
+            usuario.setDireccion(tieDireccionRE.getText().toString());
+            usuario.setLatitud("");
+            usuario.setLongitud("");
+            usuario.setTipoUsuario(2);
+            usuario.setFoto(image);
+            usuario.setCelular(tieNroCelularRE.getText().toString());
+
+            Usuario_I usuario_i = RetrofitClient.getClient().create(Usuario_I.class);
+            Call<Usuario> call = usuario_i.InsertUsuario(usuario);
+            call.enqueue(new Callback<Usuario>() {
+                @Override
+                public void onResponse(Call<Usuario> call, Response<Usuario> response) {
+                    if (response.isSuccessful()) {
+                        Toast.makeText(getApplicationContext(), "Registro Exitoso", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(getApplicationContext(),LogueoActivity.class);
+                        startActivity(intent);
+                    }
+                }
+                @Override
+                public void onFailure(Call<Usuario> call, Throwable t) {
+                    Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            });
+        }
+        /*call.enqueue(new Callback<Usuario>() {
+            @Override
+            public void onResponse(Call<Usuario> call, Response<Usuario> response) {
+               // progressDialog.dismiss();
+                if(response.isSuccessful()){
+                    Toast.makeText(getApplicationContext(), "Post submitted Title: "+response.body(), Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Usuario_I> call, Throwable t) {
+                //progressDialog.dismiss();
+                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });*/
+
+
     }
 }

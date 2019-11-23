@@ -2,6 +2,7 @@ package com.cibertec.syscharla.Fragments;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,68 +13,58 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
+import com.cibertec.syscharla.Adapters.CharlaAdapter;
 import com.cibertec.syscharla.Adapters.MisCharlasAdapter;
+import com.cibertec.syscharla.CharlaDetalleActivity;
 import com.cibertec.syscharla.Clases.Charla;
+import com.cibertec.syscharla.Interfaces.Charla_I;
 import com.cibertec.syscharla.R;
+import com.cibertec.syscharla.RetrofitClient;
+import com.cibertec.syscharla.Variables;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
-public class MisCharlasFragment extends Fragment implements DialogInterface.OnClickListener{
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class MisCharlasFragment extends Fragment implements DialogInterface.OnClickListener {
 
     private RecyclerView rvMisCharlas;
-    private RecyclerView.Adapter mcAdapter;
+    private MisCharlasAdapter adapter;
     private RecyclerView.LayoutManager mcLayoutManager;
-    private ArrayList<Charla> charlas;
+    private List<Charla> listaCharlas;
     private ImageView ivFiltro;
+    Variables objUtil = Variables.getInstance();
+
 
     public MisCharlasFragment() {
 
     }
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view =  inflater.inflate(R.layout.fragment_mis_charlas, container, false);
-
-        charlas = new ArrayList<>();
-
-        String descripcion = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi non quis exercitationem culpa nesciunt nihil aut nostrum explicabo reprehenderit optio amet ab temporibus asperiores quasi cupiditate. Voluptatum ducimus voluptates voluptas?." +
-                "\n Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi non quis exercitationem culpa nesciunt nihil aut nostrum explicabo reprehenderit optio amet ab temporibus asperiores quasi cupiditate. Voluptatum ducimus voluptates voluptas?." +
-                "\n Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi non quis exercitationem culpa nesciunt nihil aut nostrum explicabo reprehenderit optio amet ab temporibus asperiores quasi cupiditate. Voluptatum ducimus voluptates voluptas?";
-
-        Random r = new Random();
-        String[] titulo = {"Ciberseguridad adasd asdadadasdasd", "Ethical Hacking", "Java"};
-        String[] expositor = {"Expositor 1", "Expositor 2", "Expositor 3"};
-        String[] direccion = {"Direccion 1", "Direccion 2", "Direccion 3"};
-        int[] imagen = {R.drawable.ciberseguridad, R.drawable.ethical_hacking, R.drawable.java};
-
-        //Date fecha = new Date();
-        Date fecha = new Date(119, 10, 15, 10, 30);
-
-        for(int i=1; i <= 20 ; i++){
-            int num = r.nextInt(3-0);
-           // charlas.add(new Charla(i, titulo[num] + ": " +i, descripcion, expositor[num], direccion[num], imagen[num], fecha));
-        }
+        View view = inflater.inflate(R.layout.fragment_mis_charlas, container, false);
 
         rvMisCharlas = view.findViewById(R.id.rvMisCharlas);
-        mcLayoutManager= new LinearLayoutManager(getActivity());
-        mcAdapter = new MisCharlasAdapter(charlas);
-        rvMisCharlas.setHasFixedSize(true);
-        rvMisCharlas.setLayoutManager(mcLayoutManager);
-        rvMisCharlas.setAdapter(mcAdapter);
-
         ivFiltro = view.findViewById(R.id.ivFiltro);
 
-        ivFiltro.setOnClickListener(new View.OnClickListener() {
+        ListarMisCharlas(3,1,"ASC");
+
+
+     /*   ivFiltro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
-                /* Dialog por Layout */
+                *//* Dialog por Layout *//*
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 LayoutInflater inflater = requireActivity().getLayoutInflater();
                 builder.setTitle("Filtrar y/u Ordenar");
@@ -98,12 +89,51 @@ public class MisCharlasFragment extends Fragment implements DialogInterface.OnCl
                 builder.create();
                 builder.show();
             }
-        });
-
+        });*/
         return view;
     }
+    private void ListarMisCharlas(int Tipo, int OrderBy, String SortDirection) {
+        try {
 
+            String sFechaActual = "";
+            Date FechaActual = new Date();
+            String strDateFormat = "yyyyMMdd";
+            SimpleDateFormat objSDF = new SimpleDateFormat(strDateFormat);
+            sFechaActual= objSDF.format(FechaActual);
 
+            listaCharlas = new ArrayList<>();
+            Charla_I charla_i = RetrofitClient.getClient().create(Charla_I.class);
+            Call<List<Charla>> call = charla_i.getListrMisCharlasxFechaxOrden(objUtil.usuario.getIDUsuario(),Tipo,sFechaActual,OrderBy,SortDirection);
+            call.enqueue(new Callback<List<Charla>>() {
+                @Override
+                public void onResponse(Call<List<Charla>> call, Response<List<Charla>> response) {
+                    if(response.isSuccessful()) {
+                        listaCharlas = response.body();
+                        adapter = new MisCharlasAdapter(R.layout.item_mis_charlas,
+                                listaCharlas, getActivity(), new MisCharlasAdapter.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(Charla charla, int i) {
+                                Intent intent = new Intent(getActivity(), CharlaDetalleActivity.class);
+                                objUtil.charla = charla;
+                                startActivity(intent);
+                            }
+                        });
+                        rvMisCharlas.setLayoutManager(new LinearLayoutManager(getActivity()));
+                        rvMisCharlas.setAdapter(adapter);
+                    }else
+                    {
+                        Toast.makeText(getActivity(), response.message(), Toast.LENGTH_LONG).show();
+                    }
+                }
+                @Override
+                public void onFailure(Call<List<Charla>> call, Throwable t) {
+                    Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            });
+        } catch (Exception ex) {
+            Toast.makeText(getActivity(), ex.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    }
     @Override
     public void onClick(DialogInterface dialogInterface, int i) {
 

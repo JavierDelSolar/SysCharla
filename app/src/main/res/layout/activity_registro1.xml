@@ -43,6 +43,7 @@
             android:id="@+id/tie_PasswordRE1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="textPassword"
             android:hint="Ingresar Contraseña" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -61,6 +62,7 @@
             android:id="@+id/tie_PasswordRE2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="textPassword"
             android:hint="Repetir Contraseña" />
     </com.google.android.material.textfield.TextInputLayout>
 

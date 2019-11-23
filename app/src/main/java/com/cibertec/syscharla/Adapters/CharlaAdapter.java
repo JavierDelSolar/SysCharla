@@ -1,5 +1,6 @@
 package com.cibertec.syscharla.Adapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.cibertec.syscharla.Clases.Charla;
 import com.cibertec.syscharla.R;
+import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -21,11 +23,13 @@ public class CharlaAdapter extends RecyclerView.Adapter<CharlaAdapter.ViewHolder
     private int layout;
     private List<Charla> listaCharlas;
     private OnItemClickListener itemClickListener;
+    private Context context;
 
-    public CharlaAdapter(int layout, List<Charla> listaCharlas, OnItemClickListener itemClickListener) {
+    public CharlaAdapter(int layout, List<Charla> listaCharlas, Context  context,OnItemClickListener itemClickListener) {
         this.layout = layout;
         this.listaCharlas = listaCharlas;
         this.itemClickListener = itemClickListener;
+        this.context = context;
     }
 
     @NonNull
@@ -38,8 +42,11 @@ public class CharlaAdapter extends RecyclerView.Adapter<CharlaAdapter.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CharlaAdapter.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull CharlaAdapter.ViewHolder viewHolder,
+                                 int i) {
+
         viewHolder.bind(this.listaCharlas.get(i), this.itemClickListener);
+
     }
 
     @Override
@@ -54,7 +61,6 @@ public class CharlaAdapter extends RecyclerView.Adapter<CharlaAdapter.ViewHolder
         public TextView tvTituloCharlaLC;
         public TextView tvFechaHoraLC;
         public TextView tvDescripcionLC;
-        public TextView tvExpositorLC;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -63,15 +69,19 @@ public class CharlaAdapter extends RecyclerView.Adapter<CharlaAdapter.ViewHolder
             tvTituloCharlaLC = itemView.findViewById(R.id.tvTituloCharlaLC);
             tvFechaHoraLC = itemView.findViewById(R.id.tvFechaHoraLC);
             tvDescripcionLC = itemView.findViewById(R.id.tvDescripcionLC);
-            tvExpositorLC = itemView.findViewById(R.id.tvExpositorLC);
         }
         public void bind(final Charla charla, final OnItemClickListener listener){
 
-            ivFotoLstCharla.setImageResource(charla.getIdFoto());
+            // Picasso.with(context).load(charla.getFoto()).into(ivFotoLstCharla);
+            Picasso.with(context).load(charla.getFoto()).error(R.drawable.charlafoto).fit().into(ivFotoLstCharla);
+            // ivFotoLstCharla.setImageResource(charla.getIdFoto());
             tvTituloCharlaLC.setText(charla.getNombre());
 
+            //SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+            //String dateString = format.format(  charla.getFechaHora());
+
+            tvFechaHoraLC.setText(charla.getFechaHora());
             tvDescripcionLC.setText(charla.getDescripcion());
-            tvExpositorLC.setText(charla.getExpositor());
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

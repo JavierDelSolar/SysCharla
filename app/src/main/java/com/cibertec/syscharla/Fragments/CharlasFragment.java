@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +16,13 @@ import android.widget.Toast;
 import com.cibertec.syscharla.Adapters.CharlaAdapter;
 import com.cibertec.syscharla.CharlaDetalleActivity;
 import com.cibertec.syscharla.Clases.Charla;
+import com.cibertec.syscharla.Clases.Usuario;
+import com.cibertec.syscharla.Interfaces.Charla_I;
+import com.cibertec.syscharla.Interfaces.Usuario_I;
+import com.cibertec.syscharla.MenuActivity;
 import com.cibertec.syscharla.R;
-import com.cibertec.syscharla.Utility.RetrofitUtil;
+import com.cibertec.syscharla.RetrofitClient;
+import com.cibertec.syscharla.Variables;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -35,73 +39,63 @@ import retrofit2.Response;
  * A simple {@link Fragment} subclass.
  */
 public class CharlasFragment extends Fragment {
-     RecyclerView rvListaCharlas;
-     List<Charla> listaCharlas;
-     CharlaAdapter adapter;
-
+    private RecyclerView rvListaCharlas;
+    private List<Charla> listaCharlas;
+    private CharlaAdapter adapter;
+    Variables objUtil = Variables.getInstance();
 
     public CharlasFragment() {
         // Required empty public constructor
     }
 
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_charlas, container, false);
-        try {
 
-            ListAllCharla();
-        } catch (ParseException e) {
-            Log.d("Server Response1",""+e.getMessage());
-        }
-       rvListaCharlas = rootView.findViewById(R.id.rvListaCharlas);
+        rvListaCharlas = rootView.findViewById(R.id.rvListaCharlas);
+        ListarCharlas();
+
         return rootView;
     }
 
-    private void ListAllCharla()   throws ParseException {
-        Call<List<Charla>> call = RetrofitUtil.getCharlaApi().getListAllCharla();
-        call.enqueue(new Callback<List<Charla>>() {
-            @Override
-            public void onResponse(Call<List<Charla>> call, Response<List<Charla>> response) {
-                if(!response.isSuccessful()) {
-                    Log.d("Server Response1",""+ response.code());
-                    Log.d("Server Response2",""+ response.message());
-                }else{
-
-                    listaCharlas  = new ArrayList<>();
-                    listaCharlas.addAll(response.body());
-                    Log.d("Server Response3",""+ response.message());
-
-
-
-                    adapter = new CharlaAdapter(R.layout.item_lista_charla, listaCharlas, new CharlaAdapter.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(Charla charla, int i) {
-                Intent intent = new Intent(getActivity(), CharlaDetalleActivity.class);
-                Bundle bundle= new Bundle();
-                bundle.putSerializable("charla", charla);
-                intent.putExtras(bundle);
-                        }
-                    });
-                    rvListaCharlas.setLayoutManager(new LinearLayoutManager(getActivity()));
-                    rvListaCharlas.setAdapter(adapter);
-                    adapter.notifyDataSetChanged();
+    private void ListarCharlas() {
+        try {
+            listaCharlas = new ArrayList<>();
+            Charla_I charla_i = RetrofitClient.getClient().create(Charla_I.class);
+            Call<List<Charla>> call = charla_i.getListCharlaActuales();
+            call.enqueue(new Callback<List<Charla>>() {
+                @Override
+                public void onResponse(Call<List<Charla>> call, Response<List<Charla>> response) {
+                    if (response.isSuccessful()) {
+                        //   Toast.makeText(getActivity(), "INGRESO ", Toast.LENGTH_LONG).show();
+                        // List<Charla> Lista = response.body();
+                        listaCharlas = response.body();
+                        adapter = new CharlaAdapter(R.layout.item_lista_charla,
+                                listaCharlas, getActivity(), new CharlaAdapter.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(Charla charla, int i) {
+                                Intent intent = new Intent(getActivity(), CharlaDetalleActivity.class);
+                                objUtil.charla = charla;
+                                startActivity(intent);
+                            }
+                        });
+                        rvListaCharlas.setLayoutManager(new LinearLayoutManager(getActivity()));
+                        rvListaCharlas.setAdapter(adapter);
+                    } else {
+                        Toast.makeText(getActivity(), "No existe", Toast.LENGTH_LONG).show();
+                    }
                 }
-            }
+                @Override
+                public void onFailure(Call<List<Charla>> call, Throwable t) {
+                    Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            });
 
-            @Override
-            public void onFailure(Call<List<Charla>> call, Throwable t) {
-                Log.d("Server Response1",""+ t.getMessage());
-                Log.d("Server Response2",""+ t.getCause());
-                t.printStackTrace();
-                t.getMessage();
-                t.getCause();
-            }
-        });
+        } catch (Exception ex) {
+            Toast.makeText(getActivity(), ex.getMessage(), Toast.LENGTH_LONG).show();
+        }
     }
-
 
 
 }

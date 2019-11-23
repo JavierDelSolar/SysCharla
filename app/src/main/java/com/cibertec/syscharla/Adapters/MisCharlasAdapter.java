@@ -1,7 +1,6 @@
 package com.cibertec.syscharla.Adapters;
 
-import android.content.Intent;
-import android.os.Bundle;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,75 +11,82 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.cibertec.syscharla.CharlaActivity;
 import com.cibertec.syscharla.Clases.Charla;
 import com.cibertec.syscharla.R;
+import com.squareup.picasso.Picasso;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.util.List;
 
-public class MisCharlasAdapter extends RecyclerView.Adapter<MisCharlasAdapter.MisCharlasVH> {
+public class MisCharlasAdapter extends RecyclerView.Adapter<MisCharlasAdapter.ViewHolder> {
 
-    private ArrayList<Charla> charlas;
-    public static final String DATE_FORMAT = "yyyy-MM-dd HH:mm";
-    public SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
+    private int layout;
+    private List<Charla> listaCharlas;
+    private OnItemClickListener itemClickListener;
+    private Context context;
 
-    public MisCharlasAdapter(ArrayList<Charla> charlas) {
-        this.charlas = charlas;
+    public MisCharlasAdapter(int layout, List<Charla> listaCharlas, Context  context, OnItemClickListener itemClickListener) {
+        this.layout = layout;
+        this.listaCharlas = listaCharlas;
+        this.itemClickListener = itemClickListener;
+        this.context = context;
+    }
+    @NonNull
+    @Override
+    public MisCharlasAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        View view = LayoutInflater.from(viewGroup.getContext())
+                .inflate(this.layout, viewGroup, false);
+
+        return new ViewHolder(view);
     }
 
-    public class MisCharlasVH extends RecyclerView.ViewHolder{
+    @Override
+    public void onBindViewHolder(@NonNull MisCharlasAdapter.ViewHolder viewHolder,
+                                 int i) {
+
+        viewHolder.bind(this.listaCharlas.get(i), this.itemClickListener);
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return this.listaCharlas.size();
+    }
+
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView tvTitulo, tvFecha, tvDescripcion;
         public CardView cvCharla;
         public ImageView ivCharla;
 
-        public MisCharlasVH(@NonNull View v) {
-            super(v);
-            cvCharla = v.findViewById(R.id.cvCharla);
-            tvTitulo = v.findViewById(R.id.tvTitulo);
-            tvFecha = v.findViewById(R.id.tvFecha);
-            tvDescripcion = v.findViewById(R.id.tvDescripcion);
-            ivCharla = v.findViewById(R.id.ivCharla);
+
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            cvCharla = itemView.findViewById(R.id.cvCharla);
+            tvTitulo = itemView.findViewById(R.id.tvTitulo);
+            tvFecha = itemView.findViewById(R.id.tvFecha);
+            tvDescripcion = itemView.findViewById(R.id.tvDescripcion);
+            ivCharla = itemView.findViewById(R.id.ivCharla);
         }
+        public void bind(final Charla charla, final OnItemClickListener listener){
 
+            tvTitulo.setText(charla.getNombre());
+            tvFecha.setText(charla.getFechaHora());
+            tvDescripcion.setText(charla.getDescripcion());
+            Picasso.with(context).load(charla.getFoto()).error(R.drawable.charlafoto).fit().into(ivCharla);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onItemClick(charla, getAdapterPosition());
+
+                }
+            });
+        }
     }
 
-    @NonNull
-    @Override
-    public MisCharlasAdapter.MisCharlasVH onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View v;
-        v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_mis_charlas, viewGroup, false);
-        MisCharlasVH vh = new MisCharlasVH(v);
-        return vh;
+    public interface OnItemClickListener {
+        void onItemClick(Charla charla, int i);
     }
-
-    @Override
-    public void onBindViewHolder(MisCharlasVH holder, final int pos){
-        holder.tvTitulo.setText(charlas.get(pos).getNombre());
-        holder.tvDescripcion.setText(charlas.get(pos).getDescripcion());
-        holder.tvFecha.setText(dateFormat.format(charlas.get(pos).getFecha()));
-        holder.ivCharla.setImageResource(charlas.get(pos).getIdFoto());
-
-        holder.cvCharla.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                Charla charla = charlas.get(pos);
-                Intent intent = new Intent(view.getContext(), CharlaActivity.class);
-                Bundle bundle= new Bundle();
-                bundle.putSerializable("charla", charla);
-                intent.putExtras(bundle);
-                intent.putExtra("Opcion", "Mis Charlas");
-
-                view.getContext().startActivity(intent);
-
-            }
-        });
-    }
-
-    @Override
-    public int getItemCount() {
-        return charlas.size();
-    }
-
 }

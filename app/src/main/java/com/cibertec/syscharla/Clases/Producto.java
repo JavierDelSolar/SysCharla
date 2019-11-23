@@ -3,57 +3,58 @@ package com.cibertec.syscharla.Clases;
 import java.io.Serializable;
 
 public class Producto implements Serializable {
-    private String nombre;
-    private double costo;
-    private String descripcion;
-    private int estado;
-    private int idFoto;
+    private int IDProducto;
+    private String Nombre;
+    private double Costo;
+    private String Descripcion;
+    private String Foto;
+    private  int Interes;
 
-    public Producto(String nombre, double costo, String descripcion, int idFoto, int estado) {
-        this.nombre = nombre;
-        this.costo = costo;
-        this.descripcion = descripcion;
-        this.estado =   estado;
-        this.idFoto = idFoto;
+    public int getIDProducto() {
+        return IDProducto;
+    }
+
+    public void setIDProducto(int IDProducto) {
+        this.IDProducto = IDProducto;
     }
 
     public String getNombre() {
-        return nombre;
+        return Nombre;
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        Nombre = nombre;
     }
 
-    public double getCosto() { return costo; }
+    public double getCosto() {
+        return Costo;
+    }
 
     public void setCosto(double costo) {
-        this.costo = costo;
+        Costo = costo;
     }
 
     public String getDescripcion() {
-        return descripcion;
+        return Descripcion;
     }
 
     public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+        Descripcion = descripcion;
     }
 
-    public int getEstado() {
-        return estado;
+    public String getFoto() {
+        return Foto;
     }
 
-    public void setEstado(int estado) {
-        this.estado = estado;
+    public void setFoto(String foto) {
+        Foto = foto;
     }
 
-    public int getIdFoto() {
-        return idFoto;
+    public int getInteres() {
+        return Interes;
     }
 
-    public void setIdFoto(int idFoto) {
-        this.idFoto = idFoto;
+    public void setInteres(int interes) {
+        Interes = interes;
     }
-
-
 }

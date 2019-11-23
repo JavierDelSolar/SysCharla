@@ -18,11 +18,11 @@
             android:id="@+id/ivCharla"
             android:layout_width="match_parent"
             android:layout_height="130dp"
-            android:scaleType="centerCrop"
+            android:scaleType="fitXY"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars" />
+            tools:srcCompat="@drawable/charlafoto" />
 
         <TextView
             android:id="@+id/tvTitulo"

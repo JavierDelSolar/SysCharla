@@ -64,10 +64,6 @@
             android:label="@string/TituloPriva"
             android:parentActivityName=".PrivacidadActivity" />
         <activity
-            android:name=".CharlaActivity"
-            android:label="@string/TituloDetaCharla"
-            android:parentActivityName=".MenuActivity" />
-        <activity
             android:name=".MenuActivity"
             android:label="@string/TituloMenuPrin"
             android:parentActivityName=".LogueoActivity" />
