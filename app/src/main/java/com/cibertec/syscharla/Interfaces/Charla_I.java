@@ -20,8 +20,8 @@ public interface Charla_I
     Call<Charla> getCharlaxId (@Path("IDCharla") int IDCharla);
 
 
-    @GET("api/Charla/ListarMisCharlasxFechaxOrden/{IDUsuario}/{Tipo}/{Fecha}/{OrderBy}/{SortDirection}")
-    Call<List<Charla>> getListrMisCharlasxFechaxOrden(@Path("IDUsuario") int IDUsuario, @Path("Tipo") String Tipo, @Path("Fecha") String Fecha, @Path("OrderBy") int OrderBy, @Path("SortDirection") String SortDirection);
+    @GET("api/Charla/ListarMisCharlasxFechaxOrden/{IDUsuario}/{Tipo}/{Fecha}/{OrderBy}")
+    Call<List<Charla>> getListrMisCharlasxFechaxOrden(@Path("IDUsuario") int IDUsuario, @Path("Tipo") String Tipo, @Path("Fecha") String Fecha, @Path("OrderBy") int OrderBy);
 
 
 }

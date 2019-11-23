@@ -58,7 +58,7 @@ public class MisCharlasFragment extends Fragment implements DialogInterface.OnCl
         rvMisCharlas = view.findViewById(R.id.rvMisCharlas);
         ivFiltro = view.findViewById(R.id.ivFiltro);
 
-        ListarMisCharlas("100",1,"ASC");
+        ListarMisCharlas("100",1);
 
 
         ivFiltro.setOnClickListener(new View.OnClickListener() {
@@ -86,7 +86,7 @@ public class MisCharlasFragment extends Fragment implements DialogInterface.OnCl
                                 evento += (cbEventoPosterior.isChecked())?"1":"0";
                                 evento += (cbEventoPasados.isChecked())?"1":"0";
                                 
-                                ListarMisCharlas(evento,1,"ASC");
+                                ListarMisCharlas(evento,1);
                             }
                         })
                         .setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
@@ -99,7 +99,7 @@ public class MisCharlasFragment extends Fragment implements DialogInterface.OnCl
         });
         return view;
     }
-    private void ListarMisCharlas(String Tipo, int OrderBy, String SortDirection) {
+    private void ListarMisCharlas(String Tipo, int OrderBy) {
         try {
 
             String sFechaActual = "";
@@ -110,7 +110,7 @@ public class MisCharlasFragment extends Fragment implements DialogInterface.OnCl
 
             listaCharlas = new ArrayList<>();
             Charla_I charla_i = RetrofitClient.getClient().create(Charla_I.class);
-            Call<List<Charla>> call = charla_i.getListrMisCharlasxFechaxOrden(objUtil.usuario.getIDUsuario(),Tipo,sFechaActual,OrderBy,SortDirection);
+            Call<List<Charla>> call = charla_i.getListrMisCharlasxFechaxOrden(objUtil.usuario.getIDUsuario(),Tipo,sFechaActual,OrderBy);
             call.enqueue(new Callback<List<Charla>>() {
                 @Override
                 public void onResponse(Call<List<Charla>> call, Response<List<Charla>> response) {
