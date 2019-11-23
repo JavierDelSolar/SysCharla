@@ -58,28 +58,35 @@ public class MisCharlasFragment extends Fragment implements DialogInterface.OnCl
         rvMisCharlas = view.findViewById(R.id.rvMisCharlas);
         ivFiltro = view.findViewById(R.id.ivFiltro);
 
-        ListarMisCharlas(3,1,"ASC");
+        ListarMisCharlas("100",1,"ASC");
 
 
-     /*   ivFiltro.setOnClickListener(new View.OnClickListener() {
+        ivFiltro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
-                *//* Dialog por Layout *//*
+                //* Dialog por Layout *//*
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 LayoutInflater inflater = requireActivity().getLayoutInflater();
                 builder.setTitle("Filtrar y/u Ordenar");
-                builder.setView(inflater.inflate(R.layout.dialog_mis_charlas, null))
+                final View dialogView = inflater.inflate(R.layout.dialog_mis_charlas, null);
+                builder.setView(dialogView)
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int id) {
-                                CheckBox cbEventoHoy = view.findViewById(R.id.cbEventoHoy);
-                                CheckBox cbEventoPosterior = view.findViewById(R.id.cbEventoPosterior);
-                                CheckBox cbEventoPasados = view.findViewById(R.id.cbEventoPasados);
-                                RadioButton rbOrdenFechaDesc = view.findViewById(R.id.rbOrdenFechaDesc);
-                                RadioButton rbOrdenFechaAsc = view.findViewById(R.id.rbOrdenFechaAsc);
-                                RadioButton rbOrdenAlfaDesc = view.findViewById(R.id.rbOrdenAlfaDesc);
-                                RadioButton rbOrdenAlfaAsc = view.findViewById(R.id.rbOrdenAlfaAsc);
+                                String evento;
 
+                                CheckBox cbEventoHoy = dialogView.findViewById(R.id.cbEventoHoy);
+                                CheckBox cbEventoPosterior = dialogView.findViewById(R.id.cbEventoPosterior);
+                                CheckBox cbEventoPasados = dialogView.findViewById(R.id.cbEventoPasados);
+                                RadioButton rbOrdenFechaDesc = dialogView.findViewById(R.id.rbOrdenFechaDesc);
+                                RadioButton rbOrdenFechaAsc = dialogView.findViewById(R.id.rbOrdenFechaAsc);
+                                RadioButton rbOrdenAlfaDesc = dialogView.findViewById(R.id.rbOrdenAlfaDesc);
+                                RadioButton rbOrdenAlfaAsc = dialogView.findViewById(R.id.rbOrdenAlfaAsc);
+                                evento = (cbEventoHoy.isChecked())?"1":"0";
+                                evento += (cbEventoPosterior.isChecked())?"1":"0";
+                                evento += (cbEventoPasados.isChecked())?"1":"0";
+                                
+                                ListarMisCharlas(evento,1,"ASC");
                             }
                         })
                         .setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
@@ -89,10 +96,10 @@ public class MisCharlasFragment extends Fragment implements DialogInterface.OnCl
                 builder.create();
                 builder.show();
             }
-        });*/
+        });
         return view;
     }
-    private void ListarMisCharlas(int Tipo, int OrderBy, String SortDirection) {
+    private void ListarMisCharlas(String Tipo, int OrderBy, String SortDirection) {
         try {
 
             String sFechaActual = "";

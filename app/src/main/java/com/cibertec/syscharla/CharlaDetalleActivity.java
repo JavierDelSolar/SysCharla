@@ -192,6 +192,11 @@ public class CharlaDetalleActivity extends AppCompatActivity implements View.OnC
 
     @Override
     public void onClick(View v) {
+        switch(v.getId()){
+            case R.id.btn_SuscribirseDC:
+
+                break;
+        }
         if (v == btn_SuscribirseDC) {
             // validar que ya no se encuentre inscrito
             try {
@@ -272,8 +277,9 @@ public class CharlaDetalleActivity extends AppCompatActivity implements View.OnC
 
         } else if (v == ib_MapaCD) {
             //Toast.makeText(getApplicationContext(), "INGRESO", Toast.LENGTH_SHORT).show();
-            //Intent intent = new Intent(getApplicationContext(), MapsCharlaActivity.class);
-            //startActivity(intent);
+            Intent intent = new Intent(getApplicationContext(), MapCharlaActivity.class);
+            //intent.putExtra("longitud", );
+            startActivity(intent);
 
         }
     }
