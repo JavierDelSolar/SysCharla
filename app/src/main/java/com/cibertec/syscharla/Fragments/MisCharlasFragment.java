@@ -58,7 +58,7 @@ public class MisCharlasFragment extends Fragment implements DialogInterface.OnCl
         rvMisCharlas = view.findViewById(R.id.rvMisCharlas);
         ivFiltro = view.findViewById(R.id.ivFiltro);
 
-        ListarMisCharlas("100",1);
+        ListarMisCharlas("111",1);
 
 
         ivFiltro.setOnClickListener(new View.OnClickListener() {
