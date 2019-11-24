@@ -74,14 +74,15 @@ public class CharlaProductoAdapter extends RecyclerView.Adapter<CharlaProductoAd
             super(itemView);
             cvProductos = itemView.findViewById(R.id.cvProductos);
             tvNombre = itemView.findViewById(R.id.tvNombreDP);
-            tvCosto =   itemView.findViewById(R.id.tvCostoDP);
-            chkInteres   =   itemView.findViewById(R.id.chkInteres);
+            tvCosto = itemView.findViewById(R.id.tvCostoDP);
+            chkInteres = itemView.findViewById(R.id.chkInteres);
             ivFoto = itemView.findViewById(R.id.ivFotoDP);
         }
-        public void bind(final CharlaProducto charlaProducto, final OnItemClickListener listener){
+
+        public void bind(final CharlaProducto charlaProducto, final OnItemClickListener listener) {
 
             tvNombre.setText(charlaProducto.getProducto().getNombre());
-            if(charlaProducto.getInteres() == 0)
+            if (charlaProducto.getInteres() == 0)
                 chkInteres.setChecked(false);
             else
                 chkInteres.setChecked(true);
@@ -99,14 +100,8 @@ public class CharlaProductoAdapter extends RecyclerView.Adapter<CharlaProductoAd
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     if (isChecked) {
-                        Toast.makeText(CharlaProductoAdapter.this.context,
-                                "CHECKEADO",
-                                Toast.LENGTH_LONG).show();
                         InsertarInteres(charlaProducto);
                     } else {
-                        Toast.makeText(CharlaProductoAdapter.this.context,
-                                "NO CHECKEADO",
-                                Toast.LENGTH_LONG).show();
                         EliminarIntereses(charlaProducto);
                     }
                 }
@@ -126,7 +121,7 @@ public class CharlaProductoAdapter extends RecyclerView.Adapter<CharlaProductoAd
                 @Override
                 public void onResponse(Call<Interes> call, Response<Interes> response) {
                     if (response.isSuccessful()) {
-                        Toast.makeText(CharlaProductoAdapter.this.context, "Se agrego a sus Intereses.", Toast.LENGTH_LONG).show();
+                       // Toast.makeText(CharlaProductoAdapter.this.context, "Se agrego a sus Intereses.", Toast.LENGTH_LONG).show();
 
                     } else {
                         Toast.makeText(CharlaProductoAdapter.this.context, "No se registro.", Toast.LENGTH_LONG).show();
@@ -151,7 +146,7 @@ public class CharlaProductoAdapter extends RecyclerView.Adapter<CharlaProductoAd
                 @Override
                 public void onResponse(Call<Interes> call, Response<Interes> response) {
                     if (response.isSuccessful()) {
-                        Toast.makeText(CharlaProductoAdapter.this.context, "Se elimino a sus Intereses.", Toast.LENGTH_LONG).show();
+                       // Toast.makeText(CharlaProductoAdapter.this.context, "Se elimino a sus Intereses.", Toast.LENGTH_LONG).show();
 
                     } else {
                         Toast.makeText(CharlaProductoAdapter.this.context, "No se elimino.", Toast.LENGTH_LONG).show();

@@ -53,6 +53,7 @@ public class CharlaDetalleActivity extends AppCompatActivity implements View.OnC
     ImageView ivFotoCharDE;
     Variables objUtil = Variables.getInstance();
     ImageButton ib_MapaCD;
+    TextView tvHoraDC;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +69,7 @@ public class CharlaDetalleActivity extends AppCompatActivity implements View.OnC
         tvDescripcionDC = (TextView) findViewById(R.id.tvDescripcionDC);
         tvEstadoCharla = (TextView) findViewById(R.id.tvEstadoCharla);
         tvDireccCharlaDC = (TextView) findViewById(R.id.tvDireccCharlaDC);
+        tvHoraDC = (TextView) findViewById(R.id.tv_HoraDC);
         rvListaExpositores = (RecyclerView) findViewById(R.id.rv_ListaExpositores);
         btn_SuscribirseDC = (Button) findViewById(R.id.btn_SuscribirseDC);
         btn_VerProductosDC = (Button) findViewById(R.id.btn_VerProductosCD);
@@ -81,8 +83,9 @@ public class CharlaDetalleActivity extends AppCompatActivity implements View.OnC
 
         tvTituloCharlaDC.setText(objUtil.charla.getNombre().toString());
         tvDescripcionDC.setText(objUtil.charla.getDescripcion().toString());
-        tvFechaHoraDC.setText(objUtil.charla.getFechaHora().toString());
-        tvDireccCharlaDC.setText(objUtil.charla.getDireccion());
+        tvFechaHoraDC.setText(objUtil.charla.getFechaHora().toString().substring(1,10));
+        tvHoraDC.setText(objUtil.charla.getFechaHora().toString());
+        tvDireccCharlaDC.setText(objUtil.charla.getDireccion().toString().substring(11,5));
         Picasso.with(getApplicationContext()).load(objUtil.charla.getFoto()).error(R.drawable.charlafoto).fit().into(ivFotoCharDE);
 
 
