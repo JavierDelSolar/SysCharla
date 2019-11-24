@@ -72,7 +72,7 @@
         <activity
             android:name=".ProductoActivity"
             android:label="CIBER-Productos"
-            android:parentActivityName=".MenuActivity" />
+            android:parentActivityName=".CharlaDetalleActivity" />
         <activity
             android:name=".DetalleProductoActivity"
             android:label="CIBER-Mis Productos"
