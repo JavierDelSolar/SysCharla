@@ -87,7 +87,7 @@ public class CharlaProductoAdapter extends RecyclerView.Adapter<CharlaProductoAd
                 chkInteres.setChecked(true);
             tvCosto.setText("S/." + String.valueOf(charlaProducto.getProducto().getCosto()));
             //Picasso.with(context).load(charlaProducto.getProducto().getFoto()).error(R.drawable.charlafoto).fit().into(ivFoto);
-            Picasso.get().load(charlaProducto.getProducto().getFoto()).error(R.drawable.charlafoto).fit().into(ivFoto);
+            Picasso.with(context).load(charlaProducto.getProducto().getFoto()).error(R.drawable.charlafoto).fit().into(ivFoto);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

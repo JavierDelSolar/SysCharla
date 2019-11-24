@@ -109,7 +109,7 @@ public class MiPerfilFragment extends Fragment implements View.OnClickListener{
         ivFotoMP = (de.hdodenhof.circleimageview.CircleImageView)rootView.findViewById(R.id.ivFotoMP);
         imageView5 = (ImageView)rootView.findViewById(R.id.imageView5);
         fabGrabar.setOnClickListener(this);
-        Picasso.get().load("http://appcharla.azurewebsites.net//Imagenes/Producto/89M4YATLVHQ8SO329F46.jpg").into(imageView5);
+        Picasso.with(getContext()).load("http://appcharla.azurewebsites.net//Imagenes/Producto/89M4YATLVHQ8SO329F46.jpg").into(imageView5);
         // OBTERNER DATOS
 
         if(objVar.usuario != null) {

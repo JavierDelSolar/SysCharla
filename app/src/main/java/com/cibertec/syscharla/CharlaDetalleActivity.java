@@ -79,7 +79,7 @@ public class CharlaDetalleActivity extends AppCompatActivity implements View.OnC
         tvDescripcionDC.setText(objUtil.charla.getDescripcion().toString());
         tvFechaHoraDC.setText(objUtil.charla.getFechaHora().toString());
         tvDireccCharlaDC.setText(objUtil.charla.getDireccion());
-        Picasso.get().load(objUtil.charla.getFoto()).error(R.drawable.charlafoto).fit().into(ivFotoCharDE);
+        Picasso.with(getApplicationContext()).load(objUtil.charla.getFoto()).error(R.drawable.charlafoto).fit().into(ivFotoCharDE);
 
 
         getCharla(objUtil.charla.getIDCharla());

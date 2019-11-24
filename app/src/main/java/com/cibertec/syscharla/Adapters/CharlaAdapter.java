@@ -73,7 +73,7 @@ public class CharlaAdapter extends RecyclerView.Adapter<CharlaAdapter.ViewHolder
         public void bind(final Charla charla, final OnItemClickListener listener){
 
             // Picasso.with(context).load(charla.getFoto()).into(ivFotoLstCharla);
-            Picasso.get().load(charla.getFoto()).error(R.drawable.charlafoto).fit().into(ivFotoLstCharla);
+            Picasso.with(context).load(charla.getFoto()).error(R.drawable.charlafoto).fit().into(ivFotoLstCharla);
             // ivFotoLstCharla.setImageResource(charla.getIdFoto());
             tvTituloCharlaLC.setText(charla.getNombre());
 
