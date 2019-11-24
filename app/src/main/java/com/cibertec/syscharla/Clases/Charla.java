@@ -20,7 +20,7 @@ public class Charla implements Serializable {
     private String Foto;
     private String expositor;
     private boolean status;
-    //private int idFoto;
+    private int Cupos;
     private int idFotoExpositor;
 
 
@@ -120,5 +120,13 @@ public class Charla implements Serializable {
 
     public void setIDCharla(int IDCharla) {
         this.IDCharla = IDCharla;
+    }
+
+    public int getCupos() {
+        return Cupos;
+    }
+
+    public void setCupos(int cupos) {
+        Cupos = cupos;
     }
 }

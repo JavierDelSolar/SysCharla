@@ -54,6 +54,7 @@ public class CharlaDetalleActivity extends AppCompatActivity implements View.OnC
     Variables objUtil = Variables.getInstance();
     ImageButton ib_MapaCD;
     TextView tvHoraDC;
+    TextView tvCuposDC;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +71,7 @@ public class CharlaDetalleActivity extends AppCompatActivity implements View.OnC
         tvEstadoCharla = (TextView) findViewById(R.id.tvEstadoCharla);
         tvDireccCharlaDC = (TextView) findViewById(R.id.tvDireccCharlaDC);
         tvHoraDC = (TextView) findViewById(R.id.tv_HoraDC);
+        tvCuposDC = (TextView) findViewById(R.id.tvCuposDC);
         rvListaExpositores = (RecyclerView) findViewById(R.id.rv_ListaExpositores);
         btn_SuscribirseDC = (Button) findViewById(R.id.btn_SuscribirseDC);
         btn_VerProductosDC = (Button) findViewById(R.id.btn_VerProductosCD);
@@ -83,9 +85,19 @@ public class CharlaDetalleActivity extends AppCompatActivity implements View.OnC
 
         tvTituloCharlaDC.setText(objUtil.charla.getNombre().toString());
         tvDescripcionDC.setText(objUtil.charla.getDescripcion().toString());
-        tvFechaHoraDC.setText(objUtil.charla.getFechaHora().toString().substring(1,10));
-        tvHoraDC.setText(objUtil.charla.getFechaHora().toString());
-        tvDireccCharlaDC.setText(objUtil.charla.getDireccion().toString().substring(11,5));
+        if(objUtil.charla.getFechaHora().length() == 19) {
+            String Fecha = objUtil.charla.getFechaHora().toString().substring(0, 10);
+            tvFechaHoraDC.setText(Fecha);
+            String hora = objUtil.charla.getFechaHora().toString().substring(11, 16);
+           tvHoraDC.setText(hora);
+        }
+        if(objUtil.charla.getCupos() == 0){
+            tvCuposDC.setText("NO HAY CUPOS DISPONIBLES");
+            btn_SuscribirseDC.setVisibility(View.GONE);
+        }else{
+            tvCuposDC.setText("CUPOS DISPONIBLES");
+        }
+        tvDireccCharlaDC.setText(objUtil.charla.getDireccion());
         Picasso.with(getApplicationContext()).load(objUtil.charla.getFoto()).error(R.drawable.charlafoto).fit().into(ivFotoCharDE);
 
 
