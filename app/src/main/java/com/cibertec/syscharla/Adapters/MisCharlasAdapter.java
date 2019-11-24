@@ -39,6 +39,10 @@ public class MisCharlasAdapter extends RecyclerView.Adapter<MisCharlasAdapter.Vi
         return new ViewHolder(view);
     }
 
+    public void setData(List<Charla> mData) {
+        this.listaCharlas = mData;
+    }
+
     @Override
     public void onBindViewHolder(@NonNull MisCharlasAdapter.ViewHolder viewHolder,
                                  int i) {

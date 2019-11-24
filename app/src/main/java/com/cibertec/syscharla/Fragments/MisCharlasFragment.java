@@ -58,7 +58,7 @@ public class MisCharlasFragment extends Fragment {
         rvMisCharlas = view.findViewById(R.id.rvMisCharlas);
         ivFiltro = view.findViewById(R.id.ivFiltro);
 
-        ListarMisCharlas("110",1, true);
+        ListarMisCharlas("111",1, true);
 
 
         ivFiltro.setOnClickListener(new View.OnClickListener() {
@@ -89,7 +89,6 @@ public class MisCharlasFragment extends Fragment {
                                 orden = (rbOrdenFechaDesc.isChecked())?2:orden;
                                 orden = (rbOrdenAlfaAsc.isChecked())?3:orden;
                                 orden = (rbOrdenAlfaDesc.isChecked())?4:orden;
-
                                 ListarMisCharlas(evento,orden, false);
                             }
                         })
@@ -119,22 +118,26 @@ public class MisCharlasFragment extends Fragment {
                 @Override
                 public void onResponse(Call<List<Charla>> call, Response<List<Charla>> response) {
                     if(response.isSuccessful()) {
+                        listaCharlas.clear();
                         listaCharlas = response.body();
-                        adapter = new MisCharlasAdapter(R.layout.item_mis_charlas,
-                                listaCharlas, getActivity(), new MisCharlasAdapter.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(Charla charla, int i) {
-                                Intent intent = new Intent(getActivity(), CharlaDetalleActivity.class);
-                                objUtil.charla = charla;
-                                startActivity(intent);
-                            }
-                        });
-                        rvMisCharlas.setLayoutManager(new LinearLayoutManager(getActivity()));
+
                         if(prueba){
+                            adapter = new MisCharlasAdapter(R.layout.item_mis_charlas,
+                                    listaCharlas, getActivity(), new MisCharlasAdapter.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(Charla charla, int i) {
+                                    Intent intent = new Intent(getActivity(), CharlaDetalleActivity.class);
+                                    objUtil.charla = charla;
+                                    startActivity(intent);
+                                }
+                            });
+                            rvMisCharlas.setLayoutManager(new LinearLayoutManager(getActivity()));
                             rvMisCharlas.setAdapter(adapter);
                         }else{
-                            Toast.makeText(getContext(), "Recargando...", Toast.LENGTH_LONG).show();
+                            int cant = listaCharlas.size();
+                            adapter.setData(listaCharlas);
                             adapter.notifyDataSetChanged();
+                            //Toast.makeText(getContext(), "Recargando..." + cant, Toast.LENGTH_LONG).show();
                         }
 
                     }else
