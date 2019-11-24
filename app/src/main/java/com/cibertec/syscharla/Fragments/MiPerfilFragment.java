@@ -119,10 +119,11 @@ public class MiPerfilFragment extends Fragment implements View.OnClickListener{
             tieEmailMP.setText(objVar.usuario.getCorreo());
             tieDireccionMP.setText(objVar.usuario.getDireccion());
             tieNroCelularMP.setText(objVar.usuario.getCelular());
+            String foto = objVar.usuario.getFoto();
             try {
                // Toast.makeText(getActivity(), objVar.usuario.getFoto(), Toast.LENGTH_SHORT).show();
 
-                Picasso.with(getContext()).load( objVar.usuario.getFoto()).error(R.mipmap.perfil).into(ivFotoMP);
+                Picasso.with(getContext()).load( foto).error(R.mipmap.perfil).into(ivFotoMP);
             } catch (Exception ex) {
                 Toast.makeText(getActivity(), ex.getMessage(), Toast.LENGTH_SHORT).show();
 

@@ -16,6 +16,7 @@ import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.cibertec.syscharla.Adapters.CharlaAdapter;
@@ -44,6 +45,7 @@ public class MisCharlasFragment extends Fragment {
     private RecyclerView.LayoutManager mcLayoutManager;
     private List<Charla> listaCharlas;
     private ImageView ivFiltro;
+    private SearchView svBusqueda;
     Variables objUtil = Variables.getInstance();
 
 
@@ -57,6 +59,7 @@ public class MisCharlasFragment extends Fragment {
 
         rvMisCharlas = view.findViewById(R.id.rvMisCharlas);
         ivFiltro = view.findViewById(R.id.ivFiltro);
+        svBusqueda = view.findViewById(R.id.svBusqueda);
 
         ListarMisCharlas("111",1, true);
 
@@ -100,6 +103,8 @@ public class MisCharlasFragment extends Fragment {
                 builder.show();
             }
         });
+
+
         return view;
     }
     private void ListarMisCharlas(String Tipo, int OrderBy, final boolean prueba) {
