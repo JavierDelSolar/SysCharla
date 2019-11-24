@@ -46,41 +46,7 @@ public class ProductoActivity extends AppCompatActivity {
 
 
     }
-/*
-private void InsertarInteres(){
-    try {
-        Interes interes = new Interes();
-        interes.setIDCharlaProducto(charlaProducto.getIDCharlaProducto());
-        interes.setIDUsuario(objUtil.usuario.getIDUsuario());
 
-        Interes_I interes_i = RetrofitClient.getClient().create(Interes_I.class);
-        Call<Interes> call = interes_i.InsertInteres(interes);
-        call.enqueue(new Callback<Interes>() {
-            @Override
-            public void onResponse(Call<Interes> call, Response<Interes> response) {
-                if (response.isSuccessful()) {
-                    Toast.makeText(getApplicationContext(), "Se agrego a sus Intereses.", Toast.LENGTH_LONG).show();
-
-                } else {
-                    Toast.makeText(getApplicationContext(), "No se registro.", Toast.LENGTH_LONG).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Interes> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
-    } catch (Exception ex) {
-        Toast.makeText(getApplicationContext(), ex.getMessage(), Toast.LENGTH_LONG).show();
-    }
-
-}
-private void DeleteIntereses(){
-
-*/
-
-    //}
     private void LlenarProductosInteres() {
         listaCharlaProductos = new ArrayList<>();
         try {

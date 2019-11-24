@@ -1,15 +1,19 @@
 package com.cibertec.syscharla;
 
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.TargetApi;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -106,24 +110,22 @@ public class CharlaDetalleActivity extends AppCompatActivity implements View.OnC
             calluse.enqueue(new Callback<UsuarioCharla>() {
                 @Override
                 public void onResponse(Call<UsuarioCharla> call, Response<UsuarioCharla> response) {
-                    if(response.isSuccessful()) {
+                    if (response.isSuccessful()) {
                         UsuarioCharla usuarioCharla = response.body();
-                        if(usuarioCharla != null){
-                            if(usuarioCharla.getIDUsuarioCharla() > 0){
+                        if (usuarioCharla != null) {
+                            if (usuarioCharla.getIDUsuarioCharla() > 0) {
                                 //if(usuarioCharla.get)
                                 // tvEstadoCharla.setText("INSCRITO");
                                 tvEstadoCharla.setVisibility(View.VISIBLE);
                                 btn_VerProductosDC.setVisibility(View.VISIBLE);
                                 btn_SuscribirseDC.setVisibility(View.GONE);
-                            }else
-                            {
+                            } else {
                                 //tvEstadoCharla.setText("INSCRITO");
                                 tvEstadoCharla.setVisibility(View.GONE);
                                 btn_VerProductosDC.setVisibility(View.GONE);
                                 btn_SuscribirseDC.setVisibility(View.VISIBLE);
                             }
-                        }else
-                        {
+                        } else {
                             // tvEstadoCharla.setText("INSCRITO");
                             tvEstadoCharla.setVisibility(View.GONE);
                             btn_VerProductosDC.setVisibility(View.GONE);
@@ -131,6 +133,7 @@ public class CharlaDetalleActivity extends AppCompatActivity implements View.OnC
                         }
                     }
                 }
+
                 @Override
                 public void onFailure(Call<UsuarioCharla> call, Throwable t) {
                     Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
@@ -150,6 +153,7 @@ public class CharlaDetalleActivity extends AppCompatActivity implements View.OnC
             Toast.makeText(getApplicationContext(), ex.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
+
     private void ListaExpositores(int IDCharla) {
         try {
 
@@ -163,7 +167,7 @@ public class CharlaDetalleActivity extends AppCompatActivity implements View.OnC
 
                         List<Expositor> listaExpositor = response.body();
                         ExpositorAdapter adapter = new ExpositorAdapter(R.layout.item_lista_expositores,
-                                listaExpositor,getApplicationContext());
+                                listaExpositor, getApplicationContext());
                         rvListaExpositores.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                         rvListaExpositores.setAdapter(adapter);
 
@@ -190,11 +194,23 @@ public class CharlaDetalleActivity extends AppCompatActivity implements View.OnC
         return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                Intent intent = new Intent(this,LogueoActivity.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+
+        }
+    }
     UsuarioCharla usuarioCharla = null;
 
     @Override
     public void onClick(View v) {
-        switch(v.getId()){
+        switch (v.getId()) {
             case R.id.btn_SuscribirseDC:
 
                 break;
@@ -228,28 +244,25 @@ public class CharlaDetalleActivity extends AppCompatActivity implements View.OnC
                                         @Override
                                         public void onResponse(Call<UsuarioCharla> call, Response<UsuarioCharla> response) {
 
-                                            LayoutInflater inflater = getLayoutInflater();
-                                            View layout = inflater.inflate(R.layout.toast_inscripcion,
-                                                    (ViewGroup) findViewById(R.id.custom_toast_container));
+                                            if (response.isSuccessful()) {
 
-//                                            TextView mensajeToast = (TextView) layout.findViewById(R.id.text);
-//
-//                                            mensajeToast.setText("Registro eliminado");
+                                                LayoutInflater inflater = (LayoutInflater) getSystemService(getApplicationContext().LAYOUT_INFLATER_SERVICE);
+                                                View view2 = inflater.inflate(R.layout.alertdialog_inscripcion, null, false);
 
-                                            Toast toast = new Toast(getApplicationContext());
-                                            toast.setGravity(Gravity.CENTER, 0, 0);
-                                            toast.setDuration(Toast.LENGTH_LONG);
-                                            toast.setView(layout);
-                                            toast.show();
-                                            btn_VerProductosDC.setVisibility(View.VISIBLE);
-                                            tvEstadoCharla.setVisibility(View.VISIBLE);
-                                            btn_SuscribirseDC.setVisibility(View.GONE);
+                                                new AlertDialog.Builder(CharlaDetalleActivity.this).setView(view2)
+                                                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                                            @TargetApi(11)
+                                                            public void onClick(DialogInterface dialog, int id) {
 
+                                                                btn_VerProductosDC.setVisibility(View.VISIBLE);
+                                                                tvEstadoCharla.setVisibility(View.VISIBLE);
+                                                                btn_SuscribirseDC.setVisibility(View.GONE);
+                                                                dialog.cancel();
+                                                            }
 
-                                            //Toast.makeText(getApplicationContext(), "Usuario se Inscribio Correctamente.", Toast.LENGTH_LONG).show();
+                                                        }).show();
 
-                                            // Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
-                                            //startActivity(intent);
+                                            }
                                         }
 
                                         @Override

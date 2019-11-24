@@ -62,12 +62,23 @@ public class CharlasFragment extends Fragment {
         simpleSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                return false;
+                if (query.length() > 0)
+                ListarCharlasxNombre(query);
+                else
+                    ListarCharlas();
+                return true;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
                 return false;
+            }
+        });
+        simpleSearchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                ListarCharlas();
+                return true;
             }
         });
         ListarCharlas();
@@ -113,11 +124,11 @@ public class CharlasFragment extends Fragment {
         }
     }
 
-    private void ListarCharlasxNombre() {
+    private void ListarCharlasxNombre(String Nombre) {
         try {
             listaCharlas = new ArrayList<>();
             Charla_I charla_i = RetrofitClient.getClient().create(Charla_I.class);
-            Call<List<Charla>> call = charla_i.getListCharlaActuales();
+            Call<List<Charla>> call = charla_i.getListarCharlaxNombre(Nombre);
             call.enqueue(new Callback<List<Charla>>() {
                 @Override
                 public void onResponse(Call<List<Charla>> call, Response<List<Charla>> response) {

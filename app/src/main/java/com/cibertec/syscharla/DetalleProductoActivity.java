@@ -121,18 +121,4 @@ public class DetalleProductoActivity extends AppCompatActivity implements View.O
 
         }
     }
-
-/*    private void cargarUI(Producto producto){
-        this.tvNombre.setText(producto.getNombre());
-        this.tvDescripcion.setText(producto.getDescripcion());
-       this.tvCosto.setText("S/." + String.valueOf(producto.getCosto()));
-       // this.ivFoto.setImageResource(producto.getIdFoto());
-    //   this.tvEstado.setText(producto.getEstado());
-
-      *//*  int icono = getResources()
-                .getIdentifier(producto.getNombre(), "mipmap",
-                        getPackageName());
-        this.ivFoto.setImageResource(icono);*//*
-
-    }*/
 }
