@@ -7,7 +7,7 @@
     android:theme="@style/Theme.AppCompat.NoActionBar"
     tools:context=".ImagenResultActivity">
 
-    <ImageView
+    <com.cibertec.syscharla.MyImageVoew
         android:id="@+id/imageView5"
         android:layout_width="0dp"
         android:layout_height="0dp"
