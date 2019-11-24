@@ -9,11 +9,14 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.SearchView;
@@ -45,7 +48,6 @@ public class MisCharlasFragment extends Fragment {
     private RecyclerView.LayoutManager mcLayoutManager;
     private List<Charla> listaCharlas;
     private ImageView ivFiltro;
-    private SearchView svBusqueda;
     Variables objUtil = Variables.getInstance();
 
 
@@ -59,7 +61,6 @@ public class MisCharlasFragment extends Fragment {
 
         rvMisCharlas = view.findViewById(R.id.rvMisCharlas);
         ivFiltro = view.findViewById(R.id.ivFiltro);
-        svBusqueda = view.findViewById(R.id.svBusqueda);
 
         ListarMisCharlas("111",1, true);
 
@@ -125,7 +126,6 @@ public class MisCharlasFragment extends Fragment {
                     if(response.isSuccessful()) {
                         listaCharlas.clear();
                         listaCharlas = response.body();
-
                         if(prueba){
                             adapter = new MisCharlasAdapter(R.layout.item_mis_charlas,
                                     listaCharlas, getActivity(), new MisCharlasAdapter.OnItemClickListener() {

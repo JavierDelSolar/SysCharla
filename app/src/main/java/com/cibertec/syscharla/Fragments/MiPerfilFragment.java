@@ -2,6 +2,7 @@ package com.cibertec.syscharla.Fragments;
 
 
 import android.Manifest;
+import android.app.ActivityOptions;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -37,6 +38,7 @@ import android.widget.Toast;
 
 
 import com.cibertec.syscharla.Clases.Usuario;
+import com.cibertec.syscharla.ImagenResultActivity;
 import com.cibertec.syscharla.Interfaces.Usuario_I;
 import com.cibertec.syscharla.LogueoActivity;
 import com.cibertec.syscharla.PrivacidadActivity;
@@ -78,6 +80,7 @@ public class MiPerfilFragment extends Fragment implements View.OnClickListener{
     TextInputEditText tieNroCelularMP;
     FloatingActionButton fabGrabar;
     de.hdodenhof.circleimageview.CircleImageView ivFotoMP;
+    String foto;
     ImageView imageView5;
 
     private static final int REQUEST_TOMAR_FOTO = 100;
@@ -110,6 +113,21 @@ public class MiPerfilFragment extends Fragment implements View.OnClickListener{
         imageView5 = (ImageView)rootView.findViewById(R.id.imageView5);
         fabGrabar.setOnClickListener(this);
 
+        imageView5.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public void onClick(View view) {
+                Intent transitionIntent = new Intent(getActivity(),
+                        ImagenResultActivity.class);
+                ActivityOptions options = ActivityOptions
+                        .makeSceneTransitionAnimation(
+                                getActivity(),
+                                imageView5,
+                                "cibertec");
+                startActivity(transitionIntent, options.toBundle());
+            }
+        });
+
         // OBTERNER DATOS
 
         if(objVar.usuario != null) {
@@ -119,7 +137,7 @@ public class MiPerfilFragment extends Fragment implements View.OnClickListener{
             tieEmailMP.setText(objVar.usuario.getCorreo());
             tieDireccionMP.setText(objVar.usuario.getDireccion());
             tieNroCelularMP.setText(objVar.usuario.getCelular());
-            String foto = objVar.usuario.getFoto();
+            foto = objVar.usuario.getFoto();
             try {
                // Toast.makeText(getActivity(), objVar.usuario.getFoto(), Toast.LENGTH_SHORT).show();
 
