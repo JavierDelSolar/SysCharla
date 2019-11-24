@@ -9,6 +9,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface Charla_I
 {
@@ -22,6 +23,11 @@ public interface Charla_I
 
     @GET("api/Charla/ListarMisCharlasxFechaxOrden/{IDUsuario}/{Tipo}/{Fecha}/{OrderBy}")
     Call<List<Charla>> getListrMisCharlasxFechaxOrden(@Path("IDUsuario") int IDUsuario, @Path("Tipo") String Tipo, @Path("Fecha") String Fecha, @Path("OrderBy") int OrderBy);
+
+
+    @GET("api/Charla/ListarCharlaxNombre?")
+    Call<List<Charla>> getListarCharlaxNombre(@Query("Nombre") String Nombre);
+
 
 
 }
