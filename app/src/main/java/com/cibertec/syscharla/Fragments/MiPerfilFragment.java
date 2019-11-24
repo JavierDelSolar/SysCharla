@@ -32,7 +32,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
+
 
 import com.cibertec.syscharla.Clases.Usuario;
 import com.cibertec.syscharla.Interfaces.Usuario_I;
@@ -45,11 +47,14 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.squareup.picasso.Picasso;
 
+import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -72,8 +77,8 @@ public class MiPerfilFragment extends Fragment implements View.OnClickListener{
     TextInputEditText tieApellidosMP;
     TextInputEditText tieNroCelularMP;
     FloatingActionButton fabGrabar;
-
     de.hdodenhof.circleimageview.CircleImageView ivFotoMP;
+    ImageView imageView5;
 
     private static final int REQUEST_TOMAR_FOTO = 100;
     private static final int REQUEST_PERMISO_CAMARA = 200;
@@ -102,11 +107,12 @@ public class MiPerfilFragment extends Fragment implements View.OnClickListener{
         ibCamaraMP = (ImageButton)rootView.findViewById(R.id.ibCamaraMP);
         ibCarpetaMP = (ImageButton)rootView.findViewById(R.id.ibCarpetaMP);
         ivFotoMP = (de.hdodenhof.circleimageview.CircleImageView)rootView.findViewById(R.id.ivFotoMP);
+        imageView5 = (ImageView)rootView.findViewById(R.id.imageView5);
         fabGrabar.setOnClickListener(this);
-
+        Picasso.get().load("http://appcharla.azurewebsites.net//Imagenes/Producto/89M4YATLVHQ8SO329F46.jpg").into(imageView5);
         // OBTERNER DATOS
 
-        if(objVar.usuario != null){
+        if(objVar.usuario != null) {
 
             tieNombresMP.setText(objVar.usuario.getNombres());
             tieApellidosMP.setText(objVar.usuario.getApellidos());
@@ -114,8 +120,14 @@ public class MiPerfilFragment extends Fragment implements View.OnClickListener{
             tieDireccionMP.setText(objVar.usuario.getDireccion());
             tieNroCelularMP.setText(objVar.usuario.getCelular());
             try {
-                Picasso.with(getActivity()).load(objVar.usuario.getFoto()).error(R.mipmap.perfil).fit().into(ivFotoMP);
-            }catch (Exception ex){}
+                Toast.makeText(getActivity(), objVar.usuario.getFoto(), Toast.LENGTH_SHORT).show();
+
+                // Picasso.with(getActivity()).load(interiorDesign.getBrand_image_url(objVar.usuario.getFoto()).into(imageView5);
+              //  Picasso.with(getActivity()).load("http://appcharla.azurewebsites.net//Imagenes/Producto/89M4YATLVHQ8SO329F46.jpg").error(R.mipmap.perfil).fit().into(ivFotoMP);
+            } catch (Exception ex) {
+                Toast.makeText(getActivity(), ex.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
         }
         ibCamaraMP.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,6 +145,22 @@ public class MiPerfilFragment extends Fragment implements View.OnClickListener{
         btnConfigurar.setOnClickListener(this);
         return rootView;
     }
+//    private Bitmap get_imagen(String url) {
+//        Bitmap bm = null;
+//        try {
+//            URL _url = new URL(url);
+//            URLConnection con = _url.openConnection();
+//            con.connect();
+//            InputStream is = con.getInputStream();
+//            BufferedInputStream bis = new BufferedInputStream(is);
+//            bm = BitmapFactory.decodeStream(bis);
+//            bis.close();
+//            is.close();
+//        } catch (IOException e) {
+//
+//        }
+//        return bm;
+//    }
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

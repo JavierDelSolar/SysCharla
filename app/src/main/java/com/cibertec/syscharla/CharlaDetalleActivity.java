@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,6 +58,7 @@ public class CharlaDetalleActivity extends AppCompatActivity implements View.OnC
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
+
         tvTituloCharlaDC = (TextView) findViewById(R.id.tvTituloCharlaDC);
         tvFechaHoraDC = (TextView) findViewById(R.id.tvFechaHoraDC);
         tvDescripcionDC = (TextView) findViewById(R.id.tvDescripcionDC);
@@ -77,7 +79,7 @@ public class CharlaDetalleActivity extends AppCompatActivity implements View.OnC
         tvDescripcionDC.setText(objUtil.charla.getDescripcion().toString());
         tvFechaHoraDC.setText(objUtil.charla.getFechaHora().toString());
         tvDireccCharlaDC.setText(objUtil.charla.getDireccion());
-        Picasso.with(getApplicationContext()).load(objUtil.charla.getFoto()).error(R.drawable.charlafoto).fit().into(ivFotoCharDE);
+        Picasso.get().load(objUtil.charla.getFoto()).error(R.drawable.charlafoto).fit().into(ivFotoCharDE);
 
 
         getCharla(objUtil.charla.getIDCharla());

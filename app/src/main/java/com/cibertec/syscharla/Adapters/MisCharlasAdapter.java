@@ -78,7 +78,7 @@ public class MisCharlasAdapter extends RecyclerView.Adapter<MisCharlasAdapter.Vi
             tvTitulo.setText(charla.getNombre());
             tvFecha.setText(charla.getFechaHora());
             tvDescripcion.setText(charla.getDescripcion());
-            Picasso.with(context).load(charla.getFoto()).error(R.drawable.charlafoto).fit().into(ivCharla);
+            Picasso.get().load(charla.getFoto()).error(R.drawable.charlafoto).fit().into(ivCharla);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

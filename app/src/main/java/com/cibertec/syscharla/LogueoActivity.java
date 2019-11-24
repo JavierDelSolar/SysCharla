@@ -6,12 +6,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cibertec.syscharla.Clases.Usuario;
 import com.cibertec.syscharla.Interfaces.Usuario_I;
 import com.google.android.material.textfield.TextInputEditText;
+import com.squareup.picasso.Picasso;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -22,6 +24,7 @@ public class LogueoActivity extends AppCompatActivity implements View.OnClickLis
     TextView tvRegistrate;
     TextInputEditText tie_Email;
     TextInputEditText tie_Password;
+    ImageView ivLogo;
     Variables objVar = Variables.getInstance();
 
     @Override
@@ -33,6 +36,8 @@ public class LogueoActivity extends AppCompatActivity implements View.OnClickLis
         tvRegistrate = (TextView) findViewById(R.id.tv_Registrate);
         tie_Email = (TextInputEditText) findViewById(R.id.tie_Email);
         tie_Password = (TextInputEditText) findViewById(R.id.tie_Password);
+        ivLogo = (ImageView)findViewById(R.id.ivLogo);
+
 
         btnIngresar.setOnClickListener(this);
         tvRegistrate.setOnClickListener(this);

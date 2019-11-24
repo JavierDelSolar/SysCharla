@@ -40,7 +40,7 @@ public class DetalleProductoActivity extends AppCompatActivity implements View.O
         this.inicializarUI();
 
         charlaProducto   = (CharlaProducto) getIntent().getSerializableExtra("charlaProducto");
-        Picasso.with(getApplicationContext()).load(charlaProducto.getProducto().getFoto()).error(R.drawable.charlafoto).fit().into(ivFoto);
+        Picasso.get().load(charlaProducto.getProducto().getFoto()).error(R.drawable.charlafoto).fit().into(ivFoto);
         tvNombre.setText(charlaProducto.getProducto().getNombre());
 
         CargarProducto();
@@ -68,7 +68,7 @@ public class DetalleProductoActivity extends AppCompatActivity implements View.O
                         tvNombre.setText(producto.getNombre());
                         tvDescripcion.setText(producto.getDescripcion());
                         tvCosto.setText("S/." + String.valueOf(producto.getCosto()));
-                        Picasso.with(getApplicationContext()).load(producto.getFoto()).error(R.drawable.charlafoto).fit().into(ivFoto);
+                        Picasso.get().load(producto.getFoto()).error(R.drawable.charlafoto).fit().into(ivFoto);
                         if(charlaProducto.getInteres() == 0){
                             btnInteres.setVisibility(View.VISIBLE);
                         }
