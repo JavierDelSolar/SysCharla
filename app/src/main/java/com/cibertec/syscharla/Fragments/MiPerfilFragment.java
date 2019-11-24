@@ -109,7 +109,7 @@ public class MiPerfilFragment extends Fragment implements View.OnClickListener{
         ivFotoMP = (de.hdodenhof.circleimageview.CircleImageView)rootView.findViewById(R.id.ivFotoMP);
         imageView5 = (ImageView)rootView.findViewById(R.id.imageView5);
         fabGrabar.setOnClickListener(this);
-        Picasso.with(getContext()).load("http://appcharla.azurewebsites.net//Imagenes/Producto/89M4YATLVHQ8SO329F46.jpg").into(imageView5);
+
         // OBTERNER DATOS
 
         if(objVar.usuario != null) {
@@ -120,10 +120,9 @@ public class MiPerfilFragment extends Fragment implements View.OnClickListener{
             tieDireccionMP.setText(objVar.usuario.getDireccion());
             tieNroCelularMP.setText(objVar.usuario.getCelular());
             try {
-                Toast.makeText(getActivity(), objVar.usuario.getFoto(), Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getActivity(), objVar.usuario.getFoto(), Toast.LENGTH_SHORT).show();
 
-                // Picasso.with(getActivity()).load(interiorDesign.getBrand_image_url(objVar.usuario.getFoto()).into(imageView5);
-              //  Picasso.with(getActivity()).load("http://appcharla.azurewebsites.net//Imagenes/Producto/89M4YATLVHQ8SO329F46.jpg").error(R.mipmap.perfil).fit().into(ivFotoMP);
+                Picasso.with(getContext()).load( objVar.usuario.getFoto()).error(R.mipmap.perfil).into(ivFotoMP);
             } catch (Exception ex) {
                 Toast.makeText(getActivity(), ex.getMessage(), Toast.LENGTH_SHORT).show();
 
