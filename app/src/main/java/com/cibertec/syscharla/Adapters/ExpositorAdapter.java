@@ -69,7 +69,7 @@ public class ExpositorAdapter extends RecyclerView.Adapter<ExpositorAdapter.View
 
             tvNombreExpositorDC.setText(expositor.getNombre());
             tvDescrExpositor.setText(expositor.getDescripcion());
-            Picasso.with(context).load(expositor.getFoto()).error(R.drawable.charlafoto).fit().into(ivFotoExpoDC);
+            Picasso.with(context).load(expositor.getFoto().toString()).error(R.drawable.charlafoto).fit().into(ivFotoExpoDC);
 
         }
     }
