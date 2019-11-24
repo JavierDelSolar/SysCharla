@@ -142,7 +142,7 @@ public class MisCharlasFragment extends Fragment {
                             int cant = listaCharlas.size();
                             adapter.setData(listaCharlas);
                             adapter.notifyDataSetChanged();
-                            //Toast.makeText(getContext(), "Recargando..." + cant, Toast.LENGTH_LONG).show();
+
                         }
 
                     }else
