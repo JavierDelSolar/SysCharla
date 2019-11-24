@@ -78,7 +78,7 @@ public class MiPerfilFragment extends Fragment implements View.OnClickListener{
     TextInputEditText tieNroCelularMP;
     FloatingActionButton fabGrabar;
     de.hdodenhof.circleimageview.CircleImageView ivFotoMP;
-    ImageView imageView5;
+
 
     private static final int REQUEST_TOMAR_FOTO = 100;
     private static final int REQUEST_PERMISO_CAMARA = 200;
@@ -107,7 +107,7 @@ public class MiPerfilFragment extends Fragment implements View.OnClickListener{
         ibCamaraMP = (ImageButton)rootView.findViewById(R.id.ibCamaraMP);
         ibCarpetaMP = (ImageButton)rootView.findViewById(R.id.ibCarpetaMP);
         ivFotoMP = (de.hdodenhof.circleimageview.CircleImageView)rootView.findViewById(R.id.ivFotoMP);
-        imageView5 = (ImageView)rootView.findViewById(R.id.imageView5);
+
         fabGrabar.setOnClickListener(this);
 
         // OBTERNER DATOS
