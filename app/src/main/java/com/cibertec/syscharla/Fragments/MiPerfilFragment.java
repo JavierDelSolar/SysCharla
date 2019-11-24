@@ -110,10 +110,10 @@ public class MiPerfilFragment extends Fragment implements View.OnClickListener{
         ibCamaraMP = (ImageButton)rootView.findViewById(R.id.ibCamaraMP);
         ibCarpetaMP = (ImageButton)rootView.findViewById(R.id.ibCarpetaMP);
         ivFotoMP = (de.hdodenhof.circleimageview.CircleImageView)rootView.findViewById(R.id.ivFotoMP);
-        imageView5 = (ImageView)rootView.findViewById(R.id.imageView5);
+     //   imageView5 = (ImageView)rootView.findViewById(R.id.imageView5);
         fabGrabar.setOnClickListener(this);
 
-        imageView5.setOnClickListener(new View.OnClickListener() {
+        ivFotoMP.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View view) {
@@ -122,7 +122,7 @@ public class MiPerfilFragment extends Fragment implements View.OnClickListener{
                 ActivityOptions options = ActivityOptions
                         .makeSceneTransitionAnimation(
                                 getActivity(),
-                                imageView5,
+                                ivFotoMP,
                                 "cibertec");
                 startActivity(transitionIntent, options.toBundle());
             }

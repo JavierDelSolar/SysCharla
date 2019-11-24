@@ -31,11 +31,11 @@
                 android:id="@+id/ibCamaraMP"
                 android:layout_width="57dp"
                 android:layout_height="39dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="12dp"
                 android:background="@android:color/background_light"
                 app:layout_constraintBottom_toBottomOf="@+id/ivFotoMP"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.675"
+                app:layout_constraintHorizontal_bias="0.706"
                 app:layout_constraintStart_toStartOf="@+id/ivFotoMP"
                 app:srcCompat="@mipmap/ic_camara" />
 
@@ -43,11 +43,11 @@
                 android:id="@+id/ibCarpetaMP"
                 android:layout_width="45dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="12dp"
                 android:background="@android:color/background_light"
                 app:layout_constraintBottom_toBottomOf="@+id/ivFotoMP"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="0.269"
                 app:layout_constraintStart_toEndOf="@+id/ibCamaraMP"
                 app:srcCompat="@drawable/ic_folder_black_24dp"
                 tools:ignore="VectorDrawableCompat" />
