@@ -17,18 +17,12 @@ import android.widget.Toast;
 import com.cibertec.syscharla.Adapters.CharlaAdapter;
 import com.cibertec.syscharla.CharlaDetalleActivity;
 import com.cibertec.syscharla.Clases.Charla;
-import com.cibertec.syscharla.Clases.Usuario;
 import com.cibertec.syscharla.Interfaces.Charla_I;
-import com.cibertec.syscharla.Interfaces.Usuario_I;
-import com.cibertec.syscharla.MenuActivity;
 import com.cibertec.syscharla.R;
 import com.cibertec.syscharla.RetrofitClient;
 import com.cibertec.syscharla.Variables;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -57,7 +51,7 @@ public class CharlasFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_charlas, container, false);
 
         rvListaCharlas = rootView.findViewById(R.id.rvListaCharlas);
-        simpleSearchView = (SearchView) rootView.findViewById(R.id.sv_BusquedaC);
+        simpleSearchView = (SearchView) rootView.findViewById(R.id.sv_BusquedaMC);
 
         simpleSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override

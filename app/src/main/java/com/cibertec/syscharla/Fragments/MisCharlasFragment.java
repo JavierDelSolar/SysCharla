@@ -49,6 +49,7 @@ public class MisCharlasFragment extends Fragment {
     private List<Charla> listaCharlas;
     private ImageView ivFiltro;
     Variables objUtil = Variables.getInstance();
+    SearchView simpleSearchView;
 
 
     public MisCharlasFragment() {
@@ -61,8 +62,32 @@ public class MisCharlasFragment extends Fragment {
 
         rvMisCharlas = view.findViewById(R.id.rvMisCharlas);
         ivFiltro = view.findViewById(R.id.ivFiltro);
+        simpleSearchView = view.findViewById(R.id.sv_BusquedaMC);
 
-        ListarMisCharlas("111",1, true);
+        simpleSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                if (query.length() > 0)
+                    ListarMisCharlasxNombre(objUtil.evento, objUtil.orden, query);
+                else
+                    ListarMisCharlas("111", 1, true);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+        simpleSearchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                ListarMisCharlas("111", 1, true);
+                return true;
+            }
+        });
+
+        ListarMisCharlas("111", 1, true);
 
 
         ivFiltro.setOnClickListener(new View.OnClickListener() {
@@ -86,14 +111,16 @@ public class MisCharlasFragment extends Fragment {
                                 RadioButton rbOrdenFechaDesc = dialogView.findViewById(R.id.rbOrdenFechaDesc);
                                 RadioButton rbOrdenAlfaAsc = dialogView.findViewById(R.id.rbOrdenAlfaAsc);
                                 RadioButton rbOrdenAlfaDesc = dialogView.findViewById(R.id.rbOrdenAlfaDesc);
-                                evento = (cbEventoHoy.isChecked())?"1":"0";
-                                evento += (cbEventoPosterior.isChecked())?"1":"0";
-                                evento += (cbEventoPasados.isChecked())?"1":"0";
-                                orden = (rbOrdenFechaAsc.isChecked())?1:orden;
-                                orden = (rbOrdenFechaDesc.isChecked())?2:orden;
-                                orden = (rbOrdenAlfaAsc.isChecked())?3:orden;
-                                orden = (rbOrdenAlfaDesc.isChecked())?4:orden;
-                                ListarMisCharlas(evento,orden, false);
+                                evento = (cbEventoHoy.isChecked()) ? "1" : "0";
+                                evento += (cbEventoPosterior.isChecked()) ? "1" : "0";
+                                evento += (cbEventoPasados.isChecked()) ? "1" : "0";
+                                orden = (rbOrdenFechaAsc.isChecked()) ? 1 : orden;
+                                orden = (rbOrdenFechaDesc.isChecked()) ? 2 : orden;
+                                orden = (rbOrdenAlfaAsc.isChecked()) ? 3 : orden;
+                                orden = (rbOrdenAlfaDesc.isChecked()) ? 4 : orden;
+                                objUtil.evento = evento;
+                                objUtil.orden = orden;
+                                ListarMisCharlas(evento, orden, false);
                             }
                         })
                         .setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
@@ -108,6 +135,7 @@ public class MisCharlasFragment extends Fragment {
 
         return view;
     }
+
     private void ListarMisCharlas(String Tipo, int OrderBy, final boolean prueba) {
         try {
 
@@ -115,18 +143,18 @@ public class MisCharlasFragment extends Fragment {
             Date FechaActual = new Date();
             String strDateFormat = "yyyyMMdd";
             SimpleDateFormat objSDF = new SimpleDateFormat(strDateFormat);
-            sFechaActual= objSDF.format(FechaActual);
+            sFechaActual = objSDF.format(FechaActual);
 
             listaCharlas = new ArrayList<>();
             Charla_I charla_i = RetrofitClient.getClient().create(Charla_I.class);
-            Call<List<Charla>> call = charla_i.getListrMisCharlasxFechaxOrden(objUtil.usuario.getIDUsuario(),Tipo,sFechaActual,OrderBy);
+            Call<List<Charla>> call = charla_i.getListrMisCharlasxFechaxOrden(objUtil.usuario.getIDUsuario(), Tipo, sFechaActual, OrderBy);
             call.enqueue(new Callback<List<Charla>>() {
                 @Override
                 public void onResponse(Call<List<Charla>> call, Response<List<Charla>> response) {
-                    if(response.isSuccessful()) {
+                    if (response.isSuccessful()) {
                         listaCharlas.clear();
                         listaCharlas = response.body();
-                        if(prueba){
+                        if (prueba) {
                             adapter = new MisCharlasAdapter(R.layout.item_mis_charlas,
                                     listaCharlas, getActivity(), new MisCharlasAdapter.OnItemClickListener() {
                                 @Override
@@ -138,18 +166,18 @@ public class MisCharlasFragment extends Fragment {
                             });
                             rvMisCharlas.setLayoutManager(new LinearLayoutManager(getActivity()));
                             rvMisCharlas.setAdapter(adapter);
-                        }else{
+                        } else {
                             int cant = listaCharlas.size();
                             adapter.setData(listaCharlas);
                             adapter.notifyDataSetChanged();
 
                         }
 
-                    }else
-                    {
+                    } else {
                         Toast.makeText(getActivity(), response.message(), Toast.LENGTH_LONG).show();
                     }
                 }
+
                 @Override
                 public void onFailure(Call<List<Charla>> call, Throwable t) {
                     Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
@@ -160,4 +188,47 @@ public class MisCharlasFragment extends Fragment {
         }
     }
 
+    private void ListarMisCharlasxNombre(String Tipo, int OrderBy, String Nombre) {
+        try {
+
+            String sFechaActual = "";
+            Date FechaActual = new Date();
+            String strDateFormat = "yyyyMMdd";
+            SimpleDateFormat objSDF = new SimpleDateFormat(strDateFormat);
+            sFechaActual = objSDF.format(FechaActual);
+
+            listaCharlas = new ArrayList<>();
+            Charla_I charla_i = RetrofitClient.getClient().create(Charla_I.class);
+            Call<List<Charla>> call = charla_i.ListarMisCharlasxFechaxOrdenxNombre(objUtil.usuario.getIDUsuario(), Tipo, sFechaActual, OrderBy,Nombre);
+            call.enqueue(new Callback<List<Charla>>() {
+                @Override
+                public void onResponse(Call<List<Charla>> call, Response<List<Charla>> response) {
+                    if (response.isSuccessful()) {
+                        listaCharlas.clear();
+                        listaCharlas = response.body();
+                        adapter = new MisCharlasAdapter(R.layout.item_mis_charlas,
+                                listaCharlas, getActivity(), new MisCharlasAdapter.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(Charla charla, int i) {
+                                Intent intent = new Intent(getActivity(), CharlaDetalleActivity.class);
+                                objUtil.charla = charla;
+                                startActivity(intent);
+                            }
+                        });
+                        rvMisCharlas.setLayoutManager(new LinearLayoutManager(getActivity()));
+                        rvMisCharlas.setAdapter(adapter);
+                    } else {
+                        Toast.makeText(getActivity(), response.message(), Toast.LENGTH_LONG).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<List<Charla>> call, Throwable t) {
+                    Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            });
+        } catch (Exception ex) {
+            Toast.makeText(getActivity(), ex.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    }
 }

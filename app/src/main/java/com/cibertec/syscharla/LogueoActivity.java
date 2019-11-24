@@ -2,7 +2,11 @@ package com.cibertec.syscharla;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -42,6 +46,25 @@ public class LogueoActivity extends AppCompatActivity implements View.OnClickLis
         btnIngresar.setOnClickListener(this);
         tvRegistrate.setOnClickListener(this);
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        scale();
+
+    }
+
+    private void scale() {
+        PropertyValuesHolder scalex = PropertyValuesHolder.ofFloat(View.SCALE_X, 2.7f);
+        PropertyValuesHolder scaley = PropertyValuesHolder.ofFloat(View.SCALE_Y, 2.7f);
+        ObjectAnimator animator = ObjectAnimator.ofPropertyValuesHolder(ivLogo, scalex, scaley);
+        animator.setRepeatMode(ObjectAnimator.REVERSE);
+
+        animator.setRepeatCount(1);
+        //disableViewDuringAnimator(animator,btnScale);
+        animator.start();
+    }
+
 
     @Override
     public void onClick(View v) {

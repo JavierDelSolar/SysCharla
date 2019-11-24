@@ -28,7 +28,7 @@ public interface Charla_I {
     Call<List<Charla>> getListarCharlaxNombre(@Query("Nombre") String Nombre);
 
 
-    @GET("api/Charla/ListarMisCharlasxFechaxOrdenxNombre/{IDUsuario}/{Tipo}/{Fecha}/{OrderBy}")
+    @GET("api/Charla/ListarMisCharlasxFechaxOrdenxNombre/{IDUsuario}/{Tipo}/{Fecha}/{OrderBy}?")
     Call<List<Charla>> ListarMisCharlasxFechaxOrdenxNombre(@Path("IDUsuario") int IDUsuario, @Path("Tipo") String Tipo, @Path("Fecha") String Fecha, @Path("OrderBy") int OrderBy, @Query("Nombre") String Nombre);
 
 

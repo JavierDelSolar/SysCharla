@@ -17,5 +17,7 @@ public class Variables {
 
     public Usuario usuario;
     public Charla charla;
+    public String evento = "111";
+    public int orden = 1;
 
 }
